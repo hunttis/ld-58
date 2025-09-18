@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://41ihcei70jgf"]
+
+[node name="Game" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(640, 360)
+offset_right = 640.0
+offset_bottom = 360.0
+bbcode_enabled = true
+text = "[center]Game happens here[/center]
+
+Test sprite (use colorRect)
+Keyboard controls (catch keyboard events)
+
+"
+fit_content = true

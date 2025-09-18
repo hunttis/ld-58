@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8ecipthwbqmm"]
+
+[ext_resource type="Script" uid="uid://c8pisr7qt6gq2" path="res://assets/scenes/menus/options.gd" id="1_26tx4"]
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_26tx4")
+
+[node name="OptionsContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonContainer" type="VBoxContainer" parent="OptionsContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -70.5
+offset_right = 45.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MusicButton" type="CheckButton" parent="OptionsContainer/ButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ReturnToMenuButton")
+focus_neighbor_bottom = NodePath("../SoundButton")
+focus_next = NodePath("../SoundButton")
+focus_previous = NodePath("../ReturnToMenuButton")
+text = "Music"
+
+[node name="SoundButton" type="CheckButton" parent="OptionsContainer/ButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../MusicButton")
+focus_neighbor_bottom = NodePath("../ReturnToMenuButton")
+focus_next = NodePath("../ReturnToMenuButton")
+focus_previous = NodePath("../MusicButton")
+button_pressed = true
+text = "Sound"
+
+[node name="ReturnToMenuButton" type="Button" parent="OptionsContainer/ButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SoundButton")
+focus_neighbor_bottom = NodePath("../MusicButton")
+focus_next = NodePath("../MusicButton")
+focus_previous = NodePath("../SoundButton")
+text = "Return to Menu"
+
+[connection signal="toggled" from="OptionsContainer/ButtonContainer/MusicButton" to="." method="_on_music_button_toggled"]
+[connection signal="toggled" from="OptionsContainer/ButtonContainer/SoundButton" to="." method="_on_sound_button_toggled"]
+[connection signal="pressed" from="OptionsContainer/ButtonContainer/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

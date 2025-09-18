@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3 uid="uid://17qoniqtyvb4"]
+
+[ext_resource type="Script" uid="uid://blo50cupp2cta" path="res://assets/scenes/menus/main_menu.gd" id="1_uu6ob"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_uu6ob")
+
+[node name="ScreenSizeContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VerticalContainer" type="VBoxContainer" parent="ScreenSizeContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopSpacer" type="Control" parent="ScreenSizeContainer/VerticalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="GameTitle" type="RichTextLabel" parent="ScreenSizeContainer/VerticalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Game Title[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="MiddleSpacer" type="Control" parent="ScreenSizeContainer/VerticalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MenuButtons" type="Control" parent="ScreenSizeContainer/VerticalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.0
+offset_right = 23.0
+offset_bottom = 31.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../QuitButton")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -15.5
+offset_right = 35.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../StartButton")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -31.0
+offset_right = 21.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../OptionsButton")
+text = "Quit"
+
+[node name="BottomSpacer" type="Control" parent="ScreenSizeContainer/VerticalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
