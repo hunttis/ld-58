@@ -18,7 +18,7 @@
 - ColorRect generated sprite (no graphics)
 - Keyboard controls
 
-### Github workflow for deploying to itch.io
+### Github workflow for deploying a web build to itch.io
 
 - Uses https://github.com/abarichello/godot-ci to deploy to itch.io
 - See instructions, you need to set some env variables into your github repo
@@ -28,3 +28,5 @@
   - BUTLER_API_KEY
   - ITCHIO_USERNAME
   - ITCHIO_GAME
+- The project is deployed here:
+  - https://hunttis.itch.io/ludum-dare-template
