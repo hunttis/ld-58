@@ -4,6 +4,13 @@ var game_scene_file = preload("res://assets/scenes/game.tscn")
 var options_scene_file = preload("res://assets/scenes/menus/options.tscn")
 var main_menu_scene_file = preload("res://assets/scenes/menus/main_menu.tscn")
 
+enum Scenes {
+	Main_Menu,
+	Options,
+	Game,
+}
+
+@export var default_scene: Scenes = Scenes.Main_Menu
 @onready var current_scene = $CurrentScene
 
 func _ready():
@@ -11,10 +18,14 @@ func _ready():
 	Events.go_to_menu.connect(_on_go_to_menu)
 	Events.go_to_options.connect(_on_go_to_options)
 
-	# FIX ME
-	AudioServer.set_bus_name(0, "Music")
-	AudioServer.set_bus_name(1, "Sound")
-	_on_go_to_menu()
+	match default_scene:
+		Scenes.Main_Menu:
+			_on_go_to_menu()
+		Scenes.Options:
+			_on_go_to_options()
+		Scenes.Game:
+			_on_go_to_game()
+
 
 func _empty_current_scene():
 	for child_scene in current_scene.get_children():
