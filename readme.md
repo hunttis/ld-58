@@ -20,5 +20,11 @@
 
 ### Github workflow for deploying to itch.io
 
-- Uses https://github.com/abarichello/godot-ci
-- See instructions there, you need to set some env variables into your github repo
+- Uses https://github.com/abarichello/godot-ci to deploy to itch.io
+- See instructions, you need to set some env variables into your github repo
+  -> Repo settings
+  -> Secrets and variables
+  -> Actions
+  - BUTLER_API_KEY
+  - ITCHIO_USERNAME
+  - ITCHIO_GAME
