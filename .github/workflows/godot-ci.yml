@@ -14,7 +14,7 @@ jobs:
       - name: Cache import assets
         uses: actions/cache@v3
         with:
-          path: .godot/imported/
+          path: ./imported/
           key: import-assets-${{ runner.os }}-${{ github.sha }}
       - name: Import assets
         run: godot --headless --verbose --editor --quit
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
-          path: .godot/imported/
+          path: ./imported/
           key: import-assets-${{ runner.os }}-${{ github.sha }}
       - name: install wine
         run: |
@@ -37,7 +37,7 @@ jobs:
         with:
           godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}/Godot_v${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}_linux.x86_64.zip"
           godot_export_templates_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}/Godot_v${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}_export_templates.tpz"
-          relative_project_path: "./godot"
+          relative_project_path: "./"
           archive_output: true
           cache: false
           wine_path: ${{ env.WINE_PATH }}
@@ -45,22 +45,22 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: HTML5
-          path: /home/runner/.local/share/godot/archives/HTML5.zip
+          path: /home/runner/.local/share/archives/HTML5.zip
       - name: Upload Linux
         uses: actions/upload-artifact@v4
         with:
           name: LinuxX11
-          path: /home/runner/.local/share/godot/archives/LinuxX11.zip
+          path: /home/runner/.local/share/archives/LinuxX11.zip
       - name: Upload Windows
         uses: actions/upload-artifact@v4
         with:
           name: Windows
-          path: /home/runner/.local/share/godot/archives/Windows.zip
+          path: /home/runner/.local/share/archives/Windows.zip
       - name: Upload MacOS
         uses: actions/upload-artifact@v4
         with:
           name: macOS
-          path: /home/runner/.local/share/godot/archives/macOS.zip
+          path: /home/runner/.local/share/archives/macOS.zip
 
   deploy-to-itchio-linux:
     runs-on: ubuntu-latest
