@@ -27,6 +27,10 @@ window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+Game="root game group"
+
 [input]
 
 LeftClick={

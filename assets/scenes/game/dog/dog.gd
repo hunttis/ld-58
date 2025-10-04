@@ -1,7 +1,7 @@
 class_name Dog
 extends CharacterBody3D
 
-const bark_scene = preload("uid://divjv3eaenwq7")
+const bark_scene = preload("uid://ywcmei680bhq")
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 @onready var repulsionArea: Area3D = $MoveThreatRange
@@ -80,7 +80,8 @@ func _unhandled_input(event: InputEvent):
 func _bark():
   var bark_inst = bark_scene.instantiate() as Bark
   bark_inst.position = global_position
-  add_child(bark_inst)
+  get_tree().get_nodes_in_group("Game")[0].add_child(bark_inst)
+
   
 
 func _dash():

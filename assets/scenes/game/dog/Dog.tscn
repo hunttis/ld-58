@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpidycji3x0sk"]
+[gd_scene load_steps=5 format=3 uid="uid://dpidycji3x0sk"]
 
 [ext_resource type="Script" uid="uid://5ikc7bkhqwly" path="res://assets/scenes/game/dog/dog.gd" id="1_x35gb"]
 [ext_resource type="PackedScene" uid="uid://dwa2yq4tabt6r" path="res://assets/models/koira.gltf" id="1_yvigx"]
-[ext_resource type="PackedScene" uid="uid://ywcmei680bhq" path="res://assets/scenes/game/dog/Bark.tscn" id="7_golga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvigx"]
 
@@ -32,7 +31,3 @@ wait_time = 2.5
 one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[connection signal="body_entered" from="RepulsionArea" to="." method="_on_repulsion_area_body_entered"]
-[connection signal="body_exited" from="RepulsionArea" to="." method="_on_repulsion_area_body_exited"]
-[node name="Bark" parent="." instance=ExtResource("7_golga")]

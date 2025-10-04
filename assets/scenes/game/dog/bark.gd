@@ -12,5 +12,6 @@ class_name Bark
 # Called when the node enters the scene tree for the first time.
 func _ready():
   barkAudio.play()
+  (barkAreaCollider.shape as SphereShape3D).radius = bark_threat_range
   barkActiveTimer.start(bark_active_time)
   barkActiveTimer.connect("timeout", queue_free)

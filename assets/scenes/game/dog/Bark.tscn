@@ -22,6 +22,7 @@ script = ExtResource("1_f0es2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BarkThreatRange"]
 shape = SubResource("SphereShape3D_x35gb")
+debug_color = Color(0.16078432, 0.30588236, 0.7137255, 1)
 
 [node name="BarkActiveTimer" type="Timer" parent="."]
 wait_time = 0.1

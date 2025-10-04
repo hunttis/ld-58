@@ -10,7 +10,7 @@ ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.5
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" groups=["Game"]]
 script = ExtResource("1_5gf0t")
 
 [node name="Ui" parent="." instance=ExtResource("1_cb66b")]
