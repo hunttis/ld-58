@@ -50,3 +50,6 @@ stream = SubResource("AudioStreamRandomizer_2wlq0")
 bus = &"Sound"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="body_entered" from="RepulsionArea" to="." method="_on_repulsion_area_body_entered"]
+[connection signal="body_exited" from="RepulsionArea" to="." method="_on_repulsion_area_body_exited"]

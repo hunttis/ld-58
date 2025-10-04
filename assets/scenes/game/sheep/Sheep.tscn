@@ -6,8 +6,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_6bqu2"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+collision_mask = 16
 script = ExtResource("1_i4pnq")
 weight_separation = 0.2
+weight_dog = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6bqu2")

@@ -30,6 +30,12 @@ func _ready() -> void:
   rnd.randomize()
   agent.velocity_computed.connect(_on_velocity_computed)
 
+func collided_with_dog(dog: Dog) -> void:
+  _dogs.append(dog)
+
+func collided_with_dog_exited(dog: Dog) -> void:
+  _dogs.erase(dog)
+
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
     # Apply the avoidance-adjusted velocity to the body
     velocity = safe_velocity

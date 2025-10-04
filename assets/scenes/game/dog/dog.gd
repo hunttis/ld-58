@@ -87,3 +87,13 @@ func _dash():
 func set_repulsion_range(new_range: float) -> void:
   var shape = repulsionCollider.shape as SphereShape3D
   shape.radius = new_range
+
+
+func _on_repulsion_area_body_entered(body: Node3D) -> void:
+  if body is Sheep:
+    body.collided_with_dog(self)
+
+
+func _on_repulsion_area_body_exited(body: Node3D) -> void:
+  if body is Sheep:
+    body.collided_with_dog(self)
