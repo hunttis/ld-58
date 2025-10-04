@@ -1,7 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://41ihcei70jgf"]
+[gd_scene load_steps=4 format=3 uid="uid://41ihcei70jgf"]
 
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb66b"]
+albedo_color = Color(0.19612399, 0.28652012, 0.088972054, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dis88"]
+material = SubResource("StandardMaterial3D_cb66b")
+size = Vector2(100, 100)
 
 [node name="Game" type="Node3D"]
 
 [node name="Ui" parent="." instance=ExtResource("1_cb66b")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_dis88")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7774425, 0.6289542, 0, -0.6289542, 0.7774425, 0, 20.249668, 36.79419)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9936879, 0, 0.112180024, 0, 1, 0, -0.112180024, 0, 0.9936879, 53.40571, 37.840714, -23.626686)
