@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://daji13c00bfr0"]
+
+[ext_resource type="PackedScene" uid="uid://dw6rm2ic4yxp8" path="res://assets/models/aita.gltf" id="1_11586"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ownmn"]
+size = Vector3(0.44482422, 1, 1.5749512)
+
+[node name="Fence" type="StaticBody3D"]
+
+[node name="aita" parent="." instance=ExtResource("1_11586")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.60813123, 0.452981, 0.022583008)
+shape = SubResource("BoxShape3D_ownmn")
