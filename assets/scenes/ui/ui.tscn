@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://d2n143c74e0i6"]
+[gd_scene load_steps=3 format=3 uid="uid://d2n143c74e0i6"]
+
+[ext_resource type="Script" uid="uid://3joj5t57chve" path="res://assets/scenes/ui/stamina_bar.gd" id="1_7mnxw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcsp3"]
+bg_color = Color(0.2549444, 0.6885749, 0.4217892, 1)
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -7,6 +12,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -618.0
+offset_top = -55.0
+offset_right = 642.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.44000518, 7.31999)
+size_flags_vertical = 8
+theme_override_styles/fill = SubResource("StyleBoxFlat_lcsp3")
+show_percentage = false
+script = ExtResource("1_7mnxw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
