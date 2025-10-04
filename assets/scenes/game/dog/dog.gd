@@ -1,22 +1,26 @@
 class_name Dog
 extends CharacterBody3D
 
-@export var speed: float = 10
+@export var speed: float
 @onready var agent: NavigationAgent3D =  $NavigationAgent3D
 @onready var repulsionArea: Area3D = $RepulsionArea
 @onready var repulsionCollider: CollisionShape3D = $RepulsionArea/CollisionShape3D
 
+@export var sprint_threat_range = 3.5
+@export var normal_threat_range = 7.0
+@export var sprint_speed = 25.0
+@export var normal_speed = 10.0
+
 enum MOVE_STATE {
   NORMAL,
   SPRINT,
-  SNEAK,
   DASH
 }
 
+var move_state: MOVE_STATE = MOVE_STATE.NORMAL
 
-
-var move_state: float = MOVE_STATE.NORMAL
-
+func _ready():
+  speed = normal_speed
 
 func _physics_process(_delta: float) -> void:
   if agent.is_navigation_finished():
@@ -45,6 +49,19 @@ func _input(_event) -> void:
     if not result.is_empty():
       agent.target_position = result.position
 
+
+func _unhandled_input(event: InputEvent):
+    if event.is_action_pressed("ability_q"):
+      match move_state:
+        MOVE_STATE.NORMAL:
+          move_state = MOVE_STATE.SPRINT
+          set_repulsion_range(sprint_threat_range)
+          speed = sprint_speed
+        MOVE_STATE.SPRINT:
+          move_state = MOVE_STATE.NORMAL
+          set_repulsion_range(normal_threat_range)
+          speed = normal_speed
+
 func set_repulsion_range(new_range: float) -> void:
-  (repulsionCollider.shape as SphereShape3D).radius = new_range
-  pass
+  var shape = repulsionCollider.shape as SphereShape3D
+  shape.radius = new_range
