@@ -1,15 +1,15 @@
 class_name Dog
 extends CharacterBody3D
 
+const bark_scene = preload("uid://divjv3eaenwq7")
+
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
-@onready var repulsionArea: Area3D = $RepulsionArea
-@onready var repulsionCollider: CollisionShape3D = $RepulsionArea/CollisionShape3D
+@onready var repulsionArea: Area3D = $MoveThreatRange
+@onready var repulsionCollider: CollisionShape3D = $MoveThreatRange/CollisionShape3D
 @onready var barkCooldown: Timer = $BarkCooldown
-@onready var barkAudio: AudioStreamPlayer3D = $BarkAudio
 
 @export var sprint_threat_range = 3.5
 @export var normal_threat_range = 7.0
-@export var bark_threat_range = 15.0
 @export var sprint_speed = 25.0
 @export var normal_speed = 10.0
 @export var bark_cooldown = 2.5
@@ -78,11 +78,14 @@ func _unhandled_input(event: InputEvent):
       _dash()
 
 func _bark():
-  print("BARK!")
-  barkAudio.play()
+  var bark_inst = bark_scene.instantiate() as Bark
+  bark_inst.position = global_position
+  add_child(bark_inst)
+  
 
 func _dash():
   print("DASH BABY!")
+  
 
 func set_repulsion_range(new_range: float) -> void:
   var shape = repulsionCollider.shape as SphereShape3D

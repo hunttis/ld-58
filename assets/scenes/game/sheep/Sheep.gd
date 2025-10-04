@@ -28,6 +28,7 @@ enum State {
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 
+
 var goal_point: Vector3 = Vector3.ZERO
 var rnd := RandomNumberGenerator.new()
 var state: State = State.IDLE
@@ -126,6 +127,7 @@ func _physics_process(_delta: float) -> void:
       agent.velocity = desired_velocity
   else:
       agent.velocity = Vector3.ZERO
+
 
 # === Helper functions ===
 

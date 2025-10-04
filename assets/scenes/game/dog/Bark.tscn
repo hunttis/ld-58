@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://ywcmei680bhq"]
+
+[ext_resource type="Script" uid="uid://d2pe4vureyn64" path="res://assets/scenes/game/dog/bark.gd" id="1_f0es2"]
+[ext_resource type="AudioStream" uid="uid://cnbxq04xx4wco" path="res://assets/audio/bark/vilppu1.wav" id="2_tvg41"]
+[ext_resource type="AudioStream" uid="uid://fb7qll6axsve" path="res://assets/audio/bark/vilppu2.wav" id="3_obeh1"]
+[ext_resource type="AudioStream" uid="uid://bcqmlkv1d0ffc" path="res://assets/audio/bark/vilppu3.wav" id="4_3oect"]
+[ext_resource type="AudioStream" uid="uid://bd7hgo37sjylq" path="res://assets/audio/bark/vilppu4.wav" id="5_0qdjs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x35gb"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kl8mv"]
+streams_count = 4
+stream_0/stream = ExtResource("2_tvg41")
+stream_1/stream = ExtResource("3_obeh1")
+stream_2/stream = ExtResource("4_3oect")
+stream_3/stream = ExtResource("5_0qdjs")
+
+[node name="Bark" type="Node3D"]
+script = ExtResource("1_f0es2")
+
+[node name="BarkThreatRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarkThreatRange"]
+shape = SubResource("SphereShape3D_x35gb")
+
+[node name="BarkActiveTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="BarkAudio" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kl8mv")
+bus = &"Sound"
