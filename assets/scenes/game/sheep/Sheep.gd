@@ -4,21 +4,19 @@ class_name Sheep
 
 @export var sheep_dog = Vector3.ZERO
 
-@export var neighbor_radius: float = 8.0
-@export var max_neighbors: int = 10
 @export var dog_fear_radius: float = 10.0
 
 @export var max_idle_speed: float = 2
 @export var separation_radius: float = 1.5
 
 @export var look_ahead: float = 1.0
+@export var rotation_speed: float = 5.0
 
-@export var weight_goal: float = 0.6
-@export var weight_cohesion: float = 0.5
+@export var weight_cohesion: float = 0.2
 @export var weight_separation: float = 1.0
-@export var weight_align: float = 0.4
+@export var weight_align: float = 0.2
 @export var weight_dog: float = 2.0
-@export var weight_wander: float = 0.15
+@export var weight_wander: float = 0.5
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -35,15 +33,25 @@ func _ready() -> void:
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
     # Apply the avoidance-adjusted velocity to the body
     velocity = safe_velocity
-    var target_dir := position + velocity
-    look_at(Vector3(target_dir.x, global_position.y, target_dir.z))
+    
+    # Smoothly rotate towards movement direction
+    if velocity.length() > 0.001:
+        var target_dir := velocity.normalized()
+        var target_transform := Transform3D()
+        target_transform.origin = global_position
+        target_transform = target_transform.looking_at(global_position + target_dir, Vector3.UP)
+        
+        # Slerp the basis for smooth rotation
+        var delta := get_physics_process_delta_time()
+        global_transform.basis = global_transform.basis.slerp(target_transform.basis, rotation_speed * delta)
+    
     move_and_slide()
 
 func _physics_process(_delta: float) -> void:
   _neighbors = get_tree().get_nodes_in_group("sheep")
 
   var steer := Vector3.ZERO
-  steer += _towards(goal_point) * weight_goal
+  # steer += _towards(goal_point) * weight_goal
 
   if _neighbors.size() > 0:
     var centroid := _average_pos(_neighbors)
@@ -60,6 +68,8 @@ func _physics_process(_delta: float) -> void:
   # Dog repulsion
   steer += _dog_repulsion(_dogs) * weight_dog
 
+  # Wander
+  steer += _wander() * weight_wander
 
   var desired_dir := steer
   if desired_dir.length() < 0.001:
@@ -116,3 +126,9 @@ func _dog_repulsion(dogs: Array) -> Vector3:
             # Heavier inverse-square, scales up close to the dog
             f += off.normalized() * (1.0 / (dist * dist))
     return f
+
+func _wander() -> Vector3:
+    # Small random nudge on the XZ plane
+    var angle := rnd.randf_range(-PI, PI)
+    var v := Vector3(cos(angle), 0.0, sin(angle))
+    return v
