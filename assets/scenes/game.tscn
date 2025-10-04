@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://41ihcei70jgf"]
+[gd_scene load_steps=6 format=3 uid="uid://41ihcei70jgf"]
 
+[ext_resource type="Script" uid="uid://cdndksq01g27t" path="res://assets/scenes/game.gd" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
 [ext_resource type="PackedScene" uid="uid://divjv3eaenwq7" path="res://assets/scenes/game/sheep/Sheep.tscn" id="2_dis88"]
 
@@ -11,6 +12,7 @@ material = SubResource("StandardMaterial3D_cb66b")
 size = Vector2(100, 100)
 
 [node name="Game" type="Node3D"]
+script = ExtResource("1_5gf0t")
 
 [node name="Ui" parent="." instance=ExtResource("1_cb66b")]
 
