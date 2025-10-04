@@ -1,7 +1,7 @@
 class_name Dog
 extends CharacterBody3D
 
-@onready var agent: NavigationAgent3D =  $NavigationAgent3D
+@onready var agent: NavigationAgent3D = $NavigationAgent3D
 @onready var repulsionArea: Area3D = $RepulsionArea
 @onready var repulsionCollider: CollisionShape3D = $RepulsionArea/CollisionShape3D
 @onready var barkCooldown: Timer = $BarkCooldown
@@ -30,12 +30,13 @@ func _ready():
 func _physics_process(_delta: float) -> void:
   if agent.is_navigation_finished():
     return
-  var target = agent.get_next_path_position() 
+  var target = agent.get_next_path_position()
   var direction = global_position.direction_to(target)
   velocity = direction * speed
-  look_at(Vector3(direction.x, global_position.y, direction.z))
-  move_and_slide()
 
+  var look_target = position + velocity
+  look_at(Vector3(look_target.x, global_position.y, look_target.z))
+  move_and_slide()
 
 func _input(_event) -> void:
   if Input.is_action_just_pressed("LeftClick"):
