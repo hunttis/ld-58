@@ -12,9 +12,12 @@ const bark_scene = preload("uid://ywcmei680bhq")
 @export var normal_threat_range = 7.0
 @export var sprint_speed = 25.0
 @export var normal_speed = 10.0
+@export var dash_speed = 50.0
+@export var dash_distance = 15.0
 @export var bark_cooldown = 2.5
 
 var speed: float
+var dash_target: Vector3 = Vector3.ZERO
 
 enum MOVE_STATE {
   NORMAL,
@@ -44,20 +47,9 @@ func _physics_process(_delta: float) -> void:
 
 func _input(_event) -> void:
   if Input.is_action_just_pressed("LeftClick"):
-    var camera := get_tree().get_nodes_in_group("Camera")[0] as Camera3D
-    var click_pos := get_viewport().get_mouse_position()
-    var ray_length := camera.far
-    var origin := camera.project_ray_origin(click_pos)
-    var direction := camera.project_ray_normal(click_pos)
-    var end_position = origin + direction * ray_length
-
-    var space := get_world_3d().direct_space_state
-    var query := PhysicsRayQueryParameters3D.create(origin, end_position)
-    var result = space.intersect_ray(query)
-
-    print('Clicked', result)
-    if not result.is_empty():
-      agent.target_position = result.position
+    var target = get_vector_to_cursor_pos()
+    print('Clicked', target)
+    agent.target_position = target
 
 
 func _unhandled_input(event: InputEvent):
@@ -87,7 +79,28 @@ func _bark():
   
 func _dash():
   print("DASH BABY!")
+  var cursor = get_vector_to_cursor_pos()
+    
+  var target = global_position.direction_to(cursor.position) * dash_distance
+  target.y = 0.0
+  dash_target = target
+  move_state = MOVE_STATE.DASH
   
+func get_vector_to_cursor_pos() -> Vector3:
+  var camera := get_tree().get_nodes_in_group("Camera")[0] as Camera3D
+  var click_pos := get_viewport().get_mouse_position()
+  var ray_length := camera.far
+  var origin := camera.project_ray_origin(click_pos)
+  var direction := camera.project_ray_normal(click_pos)
+  var end_position = origin + direction * ray_length
+  var space := get_world_3d().direct_space_state
+  var query := PhysicsRayQueryParameters3D.create(origin, end_position)
+  var result = space.intersect_ray(query)
+  if result.is_empty():
+    printerr("Cursor position returned empty!")
+    return Vector3.ZERO
+  
+  return result.position
 
 func set_repulsion_range(new_range: float) -> void:
   var shape = repulsionCollider.shape as SphereShape3D
