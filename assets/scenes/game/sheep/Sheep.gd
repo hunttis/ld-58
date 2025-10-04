@@ -1,9 +1,10 @@
-extends Node3D
+extends CharacterBody3D
 
 class_name Sheep
 
-@export var character_body: CharacterBody3D
 @export var speed: float = 10
+
+@onready var agent: NavigationAgent3D = $NavigationAgent3D
 
 enum State {
   Idle,
@@ -12,11 +13,12 @@ enum State {
 var state: State = State.Idle
 
 func _process(delta: float) -> void:
-  pass
+  agent.target_position = Vector3.ZERO
 
 
 func _physics_process(delta: float) -> void:
-  match state:
-    State.Idle:
-      character_body.velocity += Vector3.FORWARD * speed * delta
-  character_body.move_and_slide()
+  if agent.is_navigation_finished():
+    velocity = Vector3.ZERO
+  else:
+    velocity = agent.get_next_path_position() - position
+  move_and_slide()
