@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwpyl480ytdhp"
-path.s3tc="res://.godot/imported/koira_0.png-d0dc1ffec44d44ecab9fb101d7a2e973.s3tc.ctex"
-path.etc2="res://.godot/imported/koira_0.png-d0dc1ffec44d44ecab9fb101d7a2e973.etc2.ctex"
+uid="uid://c4nqtirh5hdv2"
+path.s3tc="res://.godot/imported/aita_0.png-23a02307d890ca990cfbf158a90a23de.s3tc.ctex"
+path.etc2="res://.godot/imported/aita_0.png-23a02307d890ca990cfbf158a90a23de.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "2b246d8e75b787ac193d47921e131839"
+"md5": "ad0778e8240e0ff73c1e4532106c372d"
 }
 
 [deps]
 
-source_file="res://assets/models/koira_0.png"
-dest_files=["res://.godot/imported/koira_0.png-d0dc1ffec44d44ecab9fb101d7a2e973.s3tc.ctex", "res://.godot/imported/koira_0.png-d0dc1ffec44d44ecab9fb101d7a2e973.etc2.ctex"]
+source_file="res://assets/models/aita_0.png"
+dest_files=["res://.godot/imported/aita_0.png-23a02307d890ca990cfbf158a90a23de.s3tc.ctex", "res://.godot/imported/aita_0.png-23a02307d890ca990cfbf158a90a23de.etc2.ctex"]
 
 [params]
 
