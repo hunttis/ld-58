@@ -6,6 +6,7 @@ class_name Sheep
 
 @export var dog_fear_radius: float = 10.0
 
+@export var corral_speed: float = 2
 @export var max_idle_speed: float = 2
 @export var max_flee_speed: float = 5.0
 @export var separation_radius: float = 1.5
@@ -19,6 +20,7 @@ class_name Sheep
 @export var weight_dog: float = 2.0
 @export var weight_wander: float = 0.5
 @export var weight_bark: float = 20
+@export var weight_goal: float = 20
 
 enum State {
   IDLE,
@@ -57,6 +59,12 @@ func collided_with_dog_bark_exited(bark: Node) -> void:
   if _barks.size() == 0 and state == State.FLEE:
     state = State.IDLE
 
+func collided_with_corral_entrance(target: Node3D) -> void:
+  # remove from group so not considered as neighbour for sheep movement
+  remove_from_group("sheep")
+  goal_point = target.global_position
+  state = State.IN_CORRAL
+  
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
     # Apply the avoidance-adjusted velocity to the body
     velocity = safe_velocity
@@ -78,7 +86,8 @@ func _physics_process(_delta: float) -> void:
   _neighbors = get_tree().get_nodes_in_group("sheep")
 
   var steer := Vector3.ZERO
-  # steer += _towards(goal_point) * weight_goal
+  if goal_point != Vector3.ZERO:
+    steer += _towards(goal_point) * weight_goal
 
   if _neighbors.size() > 0:
     var centroid := _average_pos(_neighbors)
@@ -121,7 +130,7 @@ func _physics_process(_delta: float) -> void:
         State.FLEE:
           speed = max_flee_speed
         State.IN_CORRAL:
-          speed = 0
+          speed = corral_speed
       var desired_velocity := dir_to_corner.normalized() * speed
       # Tell the agent what we *want*; it will emit a safe velocity
       agent.velocity = desired_velocity
@@ -157,26 +166,32 @@ func _average_vel(arr: Array) -> Vector3:
     return sum / float(max(1, arr.size()))
 
 func _dog_repulsion(dogs: Array) -> Vector3:
-    var f := Vector3.ZERO
-    for d in dogs:
-        var off: Vector3 = global_position - d.global_position
-        var dist: float = off.length()
-        if dist < dog_fear_radius and dist > 0.001:
-            # Heavier inverse-square, scales up close to the dog
-            f += off.normalized() * (1.0 / (dist * dist))
-    return f
+  if state == State.IN_CORRAL:
+    return Vector3.ZERO
+
+  var f := Vector3.ZERO
+  for d in dogs:
+      var off: Vector3 = global_position - d.global_position
+      var dist: float = off.length()
+      if dist < dog_fear_radius and dist > 0.001:
+          # Heavier inverse-square, scales up close to the dog
+          f += off.normalized() * (1.0 / (dist * dist))
+  return f
 
 func _bark_repulsion(barks: Array) -> Vector3:
-    var f := Vector3.ZERO
-    for b in barks:
-        var off: Vector3 = global_position - b.global_position
-        var dist: float = off.length()
-        if dist > 0.001:
-          f += off.normalized() * (1.0 / (dist * dist))
-    return f
+
+  if state == State.IN_CORRAL:
+    return Vector3.ZERO
+  var f := Vector3.ZERO
+  for b in barks:
+      var off: Vector3 = global_position - b.global_position
+      var dist: float = off.length()
+      if dist > 0.001:
+        f += off.normalized() * (1.0 / (dist * dist))
+  return f
 
 func _wander() -> Vector3:
-    # Small random nudge on the XZ plane
-    var angle := rnd.randf_range(-PI, PI)
-    var v := Vector3(cos(angle), 0.0, sin(angle))
-    return v
+  # Small random nudge on the XZ plane
+  var angle := rnd.randf_range(-PI, PI)
+  var v := Vector3(cos(angle), 0.0, sin(angle))
+  return v
