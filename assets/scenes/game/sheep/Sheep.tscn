@@ -15,4 +15,4 @@ character_body = NodePath("CharacterBody3D")
 shape = SubResource("BoxShape3D_6bqu2")
 
 [node name="SheepModel" parent="CharacterBody3D" instance=ExtResource("2_6bqu2")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+transform = Transform3D(-0.05, 0, -4.371139e-09, 0, 0.05, 0, 4.371139e-09, 0, -0.05, 0, 0, 0)

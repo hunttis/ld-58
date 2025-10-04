@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://41ihcei70jgf"]
+[gd_scene load_steps=5 format=3 uid="uid://41ihcei70jgf"]
 
 [ext_resource type="Script" uid="uid://cdndksq01g27t" path="res://assets/scenes/game.gd" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
-[ext_resource type="PackedScene" uid="uid://divjv3eaenwq7" path="res://assets/scenes/game/sheep/Sheep.tscn" id="2_dis88"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb66b"]
 albedo_color = Color(0.19612399, 0.28652012, 0.088972054, 1)
@@ -27,5 +26,3 @@ current = true
 transform = Transform3D(0.0069024093, -0.65268046, 0.7576019, 0.0059462376, 0.7576333, 0.6526534, -0.9999585, 0, 0.009110489, 53.40571, 14.066107, -23.626686)
 light_energy = 2.0
 shadow_enabled = true
-
-[node name="Sheep" parent="." instance=ExtResource("2_dis88")]
