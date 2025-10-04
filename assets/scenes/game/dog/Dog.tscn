@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpidycji3x0sk"]
+[gd_scene load_steps=3 format=3 uid="uid://dpidycji3x0sk"]
 
 [ext_resource type="PackedScene" uid="uid://dwa2yq4tabt6r" path="res://assets/models/koira.gltf" id="1_yvigx"]
 
-[node name="Dog" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yvigx"]
+
+[node name="Dog" type="CharacterBody3D"]
 
 [node name="koira" parent="." instance=ExtResource("1_yvigx")]
 transform = Transform3D(-0.05, 0, -4.371139e-09, 0, 0.05, 0, 4.371139e-09, 0, -0.05, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yvigx")
