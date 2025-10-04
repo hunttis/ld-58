@@ -26,6 +26,7 @@ var move_state: MOVE_STATE = MOVE_STATE.NORMAL
 
 func _ready():
   speed = normal_speed
+  add_to_group("dog")
 
 func _physics_process(_delta: float) -> void:
   if agent.is_navigation_finished():
