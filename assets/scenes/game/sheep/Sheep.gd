@@ -26,11 +26,6 @@ class_name Sheep
 var goal_point: Vector3 = Vector3.ZERO
 var rnd := RandomNumberGenerator.new()
 
-enum State {
-  Idle,
-}
-
-var _state: State = State.Idle
 var _neighbors: Array[Node] = []
 var _dogs: Array[Node] = []
 
@@ -41,10 +36,9 @@ func _ready() -> void:
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
     # Apply the avoidance-adjusted velocity to the body
     velocity = safe_velocity
-    print("velocity", velocity)
     move_and_slide()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
   _neighbors = get_tree().get_nodes_in_group("sheep")
 
   var steer := Vector3.ZERO
@@ -83,10 +77,9 @@ func _physics_process(delta: float) -> void:
   if dir_to_corner.length() > 0.001:
       var desired_velocity := dir_to_corner.normalized() * max_speed
       # Tell the agent what we *want*; it will emit a safe velocity
-      agent.set_velocity(desired_velocity)
+      agent.velocity = desired_velocity
   else:
-      agent.set_velocity(Vector3.ZERO)
-
+      agent.velocity = Vector3.ZERO
 
 # === Helper functions ===
 
