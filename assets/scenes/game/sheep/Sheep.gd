@@ -36,6 +36,8 @@ func _ready() -> void:
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
     # Apply the avoidance-adjusted velocity to the body
     velocity = safe_velocity
+    var target_dir := position + velocity
+    look_at(Vector3(target_dir.x, global_position.y, target_dir.z))
     move_and_slide()
 
 func _physics_process(_delta: float) -> void:
@@ -65,7 +67,7 @@ func _physics_process(_delta: float) -> void:
   var desired_dir := steer
   if desired_dir.length() < 0.001:
       desired_dir = - transform.basis.z # keep moving forward a bit
-  desired_dir = desired_dir.normalized()
+  desired_dir = desired_dir.normalized() * 2
 
   # 2) Pick a short-range steer target and hand it to the agent
   var steer_target := global_position + desired_dir * look_ahead
