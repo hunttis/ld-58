@@ -3,6 +3,19 @@ extends CharacterBody3D
 
 @export var speed: float = 10
 @onready var agent: NavigationAgent3D =  $NavigationAgent3D
+@onready var repulsionArea: Area3D = $RepulsionArea
+@onready var repulsionCollider: CollisionShape3D = $RepulsionArea/CollisionShape3D
+
+enum MOVE_STATE {
+  NORMAL,
+  SPRINT,
+  SNEAK,
+  DASH
+}
+
+
+
+var move_state: float = MOVE_STATE.NORMAL
 
 
 func _physics_process(_delta: float) -> void:
@@ -31,3 +44,7 @@ func _input(_event) -> void:
     print('Clicked', result)
     if not result.is_empty():
       agent.target_position = result.position
+
+func set_repulsion_range(new_range: float) -> void:
+  (repulsionCollider.shape as SphereShape3D).radius = new_range
+  pass

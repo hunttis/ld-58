@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpidycji3x0sk"]
+[gd_scene load_steps=4 format=3 uid="uid://dpidycji3x0sk"]
 
 [ext_resource type="PackedScene" uid="uid://dwa2yq4tabt6r" path="res://assets/models/koira.gltf" id="1_yvigx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvigx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yvigx"]
+radius = 8.0
 
 [node name="Dog" type="CharacterBody3D"]
 
@@ -11,3 +14,9 @@ transform = Transform3D(-0.05, 0, -4.371139e-09, 0, 0.05, 0, 4.371139e-09, 0, -0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_yvigx")
+
+[node name="RepulsionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RepulsionArea"]
+shape = SubResource("SphereShape3D_yvigx")
+debug_color = Color(0.8974623, 0.12784648, 0.43124294, 1)
