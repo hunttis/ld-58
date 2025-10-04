@@ -1,6 +1,8 @@
 extends Node3D
 class_name Bark
 
+const bark_fx_scene = preload("res://assets/scenes/game/dog/BarkEffect.tscn")
+
 @onready var barkArea: Area3D = $BarkThreatRange
 @onready var barkAreaCollider: CollisionShape3D = $BarkThreatRange/CollisionShape3D
 @onready var barkActiveTimer: Timer = $BarkActiveTimer
@@ -11,6 +13,8 @@ class_name Bark
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  var bark_fx = bark_fx_scene.instantiate()
+  add_child(bark_fx)
   barkAudio.play()
   (barkAreaCollider.shape as SphereShape3D).radius = bark_threat_range
   barkActiveTimer.start(bark_active_time)
