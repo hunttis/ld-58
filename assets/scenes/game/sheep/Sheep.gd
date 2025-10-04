@@ -8,8 +8,7 @@ class_name Sheep
 @export var max_neighbors: int = 10
 @export var dog_fear_radius: float = 10.0
 
-@export var speed: float = 10
-@export var max_speed: float = 10
+@export var max_idle_speed: float = 2
 @export var separation_radius: float = 1.5
 
 @export var look_ahead: float = 1.0
@@ -61,23 +60,21 @@ func _physics_process(_delta: float) -> void:
   # Dog repulsion
   steer += _dog_repulsion(_dogs) * weight_dog
 
-  # Mild wander to prevent clumping
-  steer += _wander() * weight_wander
 
   var desired_dir := steer
   if desired_dir.length() < 0.001:
       desired_dir = - transform.basis.z # keep moving forward a bit
-  desired_dir = desired_dir.normalized() * 2
+  desired_dir = desired_dir.normalized()
 
   # 2) Pick a short-range steer target and hand it to the agent
-  var steer_target := global_position + desired_dir * look_ahead
+  var steer_target := global_position + ((desired_dir * look_ahead) * 2)
   agent.target_position = steer_target
 
   # 3) Use path corner to build desired velocity; let avoidance adjust it
   var next_corner := agent.get_next_path_position()
   var dir_to_corner := (next_corner - global_position)
   if dir_to_corner.length() > 0.001:
-      var desired_velocity := dir_to_corner.normalized() * max_speed
+      var desired_velocity := dir_to_corner.normalized() * max_idle_speed
       # Tell the agent what we *want*; it will emit a safe velocity
       agent.velocity = desired_velocity
   else:
@@ -119,9 +116,3 @@ func _dog_repulsion(dogs: Array) -> Vector3:
             # Heavier inverse-square, scales up close to the dog
             f += off.normalized() * (1.0 / (dist * dist))
     return f
-
-func _wander() -> Vector3:
-    # Small random nudge on the XZ plane
-    var angle := rnd.randf_range(-PI, PI)
-    var v := Vector3(cos(angle), 0.0, sin(angle))
-    return v
