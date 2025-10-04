@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 class_name Sheep
 
+@export var sheep_dog: Node3D
 @export var speed: float = 10
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
