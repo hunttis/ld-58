@@ -7,6 +7,7 @@ class_name Sheep
 @export var dog_fear_radius: float = 10.0
 
 @export var max_idle_speed: float = 2
+@export var max_flee_speed: float = 5.0
 @export var separation_radius: float = 1.5
 
 @export var look_ahead: float = 1.0
@@ -112,7 +113,15 @@ func _physics_process(_delta: float) -> void:
   var next_corner := agent.get_next_path_position()
   var dir_to_corner := (next_corner - global_position)
   if dir_to_corner.length() > 0.001:
-      var desired_velocity := dir_to_corner.normalized() * max_idle_speed
+      var speed: float = 0
+      match state:
+        State.IDLE:
+          speed = max_idle_speed
+        State.FLEE:
+          speed = max_flee_speed
+        State.IN_CORRAL:
+          speed = 0
+      var desired_velocity := dir_to_corner.normalized() * speed
       # Tell the agent what we *want*; it will emit a safe velocity
       agent.velocity = desired_velocity
   else:
