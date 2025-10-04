@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
     var look_target = position + velocity
     look_at(Vector3(look_target.x, global_position.y, look_target.z))
     move_and_slide()
-  
+
   if move_state == MOVE_STATE.DASH:
     var dir = global_position.direction_to(dash_target)
     velocity = dir * dash_speed
@@ -78,11 +78,11 @@ func _unhandled_input(event: InputEvent):
           move_state = MOVE_STATE.NORMAL
           set_repulsion_range(normal_threat_range)
           speed = normal_speed
-          
+
     if event.is_action_pressed("ability_w") && barkCooldown.is_stopped():
       _bark()
       barkCooldown.start(bark_cooldown)
-    
+
     if event.is_action_pressed("ability_e") && move_state != MOVE_STATE.DASH:
       _dash()
 
@@ -91,14 +91,14 @@ func _bark():
   bark_inst.position = global_position
   get_tree().get_nodes_in_group("Game")[0].add_child(bark_inst)
 
-  
+
 func _dash():
   print("DASH BABY!")
   agent.target_position = global_position
   var dash_dir = global_position.direction_to(get_vector_to_cursor_pos())
   dash_target = global_position + (dash_dir * dash_distance)
   move_state = MOVE_STATE.DASH
-  
+
 func get_vector_to_cursor_pos() -> Vector3:
   var camera := get_tree().get_nodes_in_group("Camera")[0] as Camera3D
   var click_pos := get_viewport().get_mouse_position()
@@ -112,7 +112,7 @@ func get_vector_to_cursor_pos() -> Vector3:
   if result.is_empty():
     printerr("Cursor position returned empty!")
     return Vector3.ZERO
-  
+
   return result.position
 
 func set_repulsion_range(new_range: float) -> void:
