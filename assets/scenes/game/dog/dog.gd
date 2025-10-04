@@ -29,4 +29,5 @@ func _input(_event) -> void:
     var result = space.intersect_ray(query)
 
     print('Clicked', result)
-    agent.target_position = result.position
+    if not result.is_empty():
+      agent.target_position = result.position
