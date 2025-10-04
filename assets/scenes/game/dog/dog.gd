@@ -1,19 +1,19 @@
+class_name Dog
 extends CharacterBody3D
 
+@export var speed: float = 10
 @onready var agent: NavigationAgent3D =  $NavigationAgent3D
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-  pass # Replace with function body.
-
 
 
 func _physics_process(_delta: float) -> void:
   if agent.is_navigation_finished():
-    velocity = Vector3.ZERO
-  else:
-    velocity = agent.get_next_path_position() - position
+    return
+  var target = agent.get_next_path_position() 
+  var direction = global_position.direction_to(target)
+  velocity = direction * speed
+  look_at(Vector3(direction.x, global_position.y, direction.z))
   move_and_slide()
+
 
 func _input(_event) -> void:
   if Input.is_action_just_pressed("LeftClick"):
