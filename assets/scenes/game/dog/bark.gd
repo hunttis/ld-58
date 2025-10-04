@@ -2,7 +2,7 @@ extends Node3D
 class_name Bark
 
 @onready var barkArea: Area3D = $BarkThreatRange
-@onready var barkAreaCollider: Area3D = $BarkThreatRange/CollisionShape3D
+@onready var barkAreaCollider: CollisionShape3D = $BarkThreatRange/CollisionShape3D
 @onready var barkActiveTimer: Timer = $BarkActiveTimer
 @onready var barkAudio: AudioStreamPlayer3D = $BarkAudio
 

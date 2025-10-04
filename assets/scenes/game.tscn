@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://41ihcei70jgf"]
+[gd_scene load_steps=6 format=3 uid="uid://41ihcei70jgf"]
 
 [ext_resource type="Script" uid="uid://cdndksq01g27t" path="res://assets/scenes/game.gd" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
 [ext_resource type="PackedScene" uid="uid://c8hii7jmloklt" path="res://assets/scenes/game/laidun/laidun.tscn" id="4_cb5na"]
-[ext_resource type="PackedScene" path="res://assets/models/dog/Dog.tscn" id="4_j62u1"]
-[ext_resource type="Script" path="res://assets/models/dog/dog.gd" id="5_j62u1"]
+[ext_resource type="PackedScene" uid="uid://dpidycji3x0sk" path="res://assets/scenes/game/dog/Dog.tscn" id="4_j62u1"]
 
 [sub_resource type="Environment" id="Environment_j62u1"]
 ambient_light_source = 3
@@ -29,7 +28,3 @@ shadow_enabled = true
 [node name="Laidun" parent="." instance=ExtResource("4_cb5na")]
 
 [node name="Dog" parent="." instance=ExtResource("4_j62u1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6674843, 0, 20.495895)
-script = ExtResource("5_j62u1")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Dog"]
