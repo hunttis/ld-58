@@ -17,7 +17,7 @@ script = ExtResource("1_5gf0t")
 [node name="Ui" parent="." instance=ExtResource("1_cb66b")]
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.7774425, 0.6289542, 0, -0.6289542, 0.7774425, 0, 20.249668, 36.79419)
+transform = Transform3D(1, 0, 0, 0, 0.74201095, 0.67038786, 0, -0.67038786, 0.74201095, 0, 15.005146, 16.981813)
 environment = SubResource("Environment_j62u1")
 current = true
 script = ExtResource("3_j62u1")

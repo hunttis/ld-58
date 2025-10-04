@@ -29,6 +29,9 @@ func _ready():
   add_to_group("dog")
 
 func _physics_process(_delta: float) -> void:
+  var move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+  if move_dir.length() > 0:
+    agent.target_position = global_position + Vector3(move_dir.x, 0, move_dir.y) * 10
   if agent.is_navigation_finished():
     return
   var target = agent.get_next_path_position()
@@ -38,7 +41,6 @@ func _physics_process(_delta: float) -> void:
   var look_target = position + velocity
   look_at(Vector3(look_target.x, global_position.y, look_target.z))
   move_and_slide()
-
 
 func _input(_event) -> void:
   if Input.is_action_just_pressed("LeftClick"):
@@ -83,7 +85,6 @@ func _bark():
   get_tree().get_nodes_in_group("Game")[0].add_child(bark_inst)
 
   
-
 func _dash():
   print("DASH BABY!")
   
