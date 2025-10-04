@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://be03sgpy6ajit" path="res://assets/models/lammas.gltf" id="2_6bqu2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6bqu2"]
+size = Vector3(0.904541, 0.90527344, 1.5105591)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 16
@@ -12,6 +13,7 @@ weight_separation = 0.2
 weight_dog = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0052490234, 0.45263672, -0.04812622)
 shape = SubResource("BoxShape3D_6bqu2")
 
 [node name="SheepModel" parent="." instance=ExtResource("2_6bqu2")]
