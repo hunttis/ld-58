@@ -1,13 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpidycji3x0sk"]
+[gd_scene load_steps=10 format=3 uid="uid://dpidycji3x0sk"]
 
+[ext_resource type="Script" uid="uid://5ikc7bkhqwly" path="res://assets/scenes/game/dog/dog.gd" id="1_x35gb"]
 [ext_resource type="PackedScene" uid="uid://dwa2yq4tabt6r" path="res://assets/models/koira.gltf" id="1_yvigx"]
+[ext_resource type="AudioStream" uid="uid://cnbxq04xx4wco" path="res://assets/audio/bark/vilppu1.wav" id="2_2wlq0"]
+[ext_resource type="AudioStream" uid="uid://fb7qll6axsve" path="res://assets/audio/bark/vilppu2.wav" id="3_x35gb"]
+[ext_resource type="AudioStream" uid="uid://bcqmlkv1d0ffc" path="res://assets/audio/bark/vilppu3.wav" id="4_golga"]
+[ext_resource type="AudioStream" uid="uid://bd7hgo37sjylq" path="res://assets/audio/bark/vilppu4.wav" id="5_jxp38"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvigx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yvigx"]
 radius = 8.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2wlq0"]
+streams_count = 4
+stream_0/stream = ExtResource("2_2wlq0")
+stream_1/stream = ExtResource("3_x35gb")
+stream_2/stream = ExtResource("4_golga")
+stream_3/stream = ExtResource("5_jxp38")
+
 [node name="Dog" type="CharacterBody3D"]
+script = ExtResource("1_x35gb")
+bark_cooldown = 0.5
 
 [node name="koira" parent="." instance=ExtResource("1_yvigx")]
 transform = Transform3D(-0.05, 0, -4.371139e-09, 0, 0.05, 0, 4.371139e-09, 0, -0.05, 0, 0, 0)
@@ -20,3 +34,17 @@ shape = SubResource("BoxShape3D_yvigx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RepulsionArea"]
 shape = SubResource("SphereShape3D_yvigx")
 debug_color = Color(0.8974623, 0.12784648, 0.43124294, 1)
+
+[node name="BarkCooldown" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="BarkActiveTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="BarkAudio" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_2wlq0")
+bus = &"Sound"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
