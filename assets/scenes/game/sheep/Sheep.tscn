@@ -1,18 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://divjv3eaenwq7"]
 
 [ext_resource type="Script" uid="uid://bt5y4r0b2n00n" path="res://assets/scenes/game/sheep/Sheep.gd" id="1_i4pnq"]
+[ext_resource type="PackedScene" uid="uid://be03sgpy6ajit" path="res://assets/models/lammas.gltf" id="2_6bqu2"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_6bqu2"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_tn6w5"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bqu2"]
 
 [node name="Sheep" type="Node3D"]
 script = ExtResource("1_i4pnq")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-mesh = SubResource("SphereMesh_6bqu2")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("SphereShape3D_tn6w5")
+shape = SubResource("BoxShape3D_6bqu2")
+
+[node name="SheepModel" parent="CharacterBody3D" instance=ExtResource("2_6bqu2")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)

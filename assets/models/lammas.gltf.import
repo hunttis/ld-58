@@ -14,7 +14,7 @@ dest_files=["res://.godot/imported/lammas.gltf-69b0d6e452a4dcf27c87f347e88489a1.
 [params]
 
 nodes/root_type=""
-nodes/root_name=""
+nodes/root_name="SheepModel"
 nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
