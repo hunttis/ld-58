@@ -12,7 +12,7 @@ const bark_scene = preload("uid://ywcmei680bhq")
 @export var normal_threat_range = 7.0
 @export var sprint_speed = 25.0
 @export var normal_speed = 10.0
-@export var dash_speed = 50.0
+@export var dash_speed = 100.0
 @export var dash_distance = 15.0
 @export var bark_cooldown = 2.5
 
@@ -30,23 +30,38 @@ var move_state: MOVE_STATE = MOVE_STATE.NORMAL
 func _ready():
   speed = normal_speed
   add_to_group("dog")
+  agent.connect("navigation_finished",
+  func():
+    if move_state == MOVE_STATE.DASH:
+      move_state = MOVE_STATE.NORMAL
+      speed = normal_speed
+    )
 
 func _physics_process(_delta: float) -> void:
-  var move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-  if move_dir.length() > 0:
-    agent.target_position = global_position + Vector3(move_dir.x, 0, move_dir.y) * 10
-  if agent.is_navigation_finished():
-    return
-  var target = agent.get_next_path_position()
-  var direction = global_position.direction_to(target)
-  velocity = direction * speed
+  if move_state != MOVE_STATE.DASH:
+    var move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+    if move_dir.length() > 0:
+      agent.target_position = global_position + Vector3(move_dir.x, 0, move_dir.y) * 10
+    if agent.is_navigation_finished():
+      return
+    var target = agent.get_next_path_position()
+    var direction = global_position.direction_to(target)
+    velocity = direction * speed
 
-  var look_target = position + velocity
-  look_at(Vector3(look_target.x, global_position.y, look_target.z))
-  move_and_slide()
+    var look_target = position + velocity
+    look_at(Vector3(look_target.x, global_position.y, look_target.z))
+    move_and_slide()
+  
+  if move_state == MOVE_STATE.DASH:
+    var dir = global_position.direction_to(dash_target)
+    velocity = dir * dash_speed
+    var collided = move_and_slide()
+    if collided || global_position.distance_to(dash_target) <= 1:
+      move_state = MOVE_STATE.NORMAL
+      agent.target_position = global_position
 
 func _input(_event) -> void:
-  if Input.is_action_just_pressed("LeftClick"):
+  if Input.is_action_just_pressed("LeftClick") && move_state != MOVE_STATE.DASH:
     var target = get_vector_to_cursor_pos()
     print('Clicked', target)
     agent.target_position = target
@@ -68,7 +83,7 @@ func _unhandled_input(event: InputEvent):
       _bark()
       barkCooldown.start(bark_cooldown)
     
-    if event.is_action_pressed("ability_e"):
+    if event.is_action_pressed("ability_e") && move_state != MOVE_STATE.DASH:
       _dash()
 
 func _bark():
@@ -79,11 +94,9 @@ func _bark():
   
 func _dash():
   print("DASH BABY!")
-  var cursor = get_vector_to_cursor_pos()
-    
-  var target = global_position.direction_to(cursor.position) * dash_distance
-  target.y = 0.0
-  dash_target = target
+  agent.target_position = global_position
+  var dash_dir = global_position.direction_to(get_vector_to_cursor_pos())
+  dash_target = global_position + (dash_dir * dash_distance)
   move_state = MOVE_STATE.DASH
   
 func get_vector_to_cursor_pos() -> Vector3:

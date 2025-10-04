@@ -35,3 +35,4 @@ one_shot = true
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 4.05
+path_height_offset = 0.5
