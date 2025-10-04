@@ -15,3 +15,12 @@ func _ready():
   (barkAreaCollider.shape as SphereShape3D).radius = bark_threat_range
   barkActiveTimer.start(bark_active_time)
   barkActiveTimer.connect("timeout", queue_free)
+
+
+func _on_bark_threat_range_body_entered(body: Node3D) -> void:
+  if body is Sheep:
+    body.collided_with_dog_bark(self)
+
+func _on_bark_threat_range_body_exited(body: Node3D) -> void:
+  if body is Sheep:
+    body.collided_with_dog_bark_exited(self)
