@@ -38,6 +38,7 @@ func _physics_process(_delta: float) -> void:
   look_at(Vector3(look_target.x, global_position.y, look_target.z))
   move_and_slide()
 
+
 func _input(_event) -> void:
   if Input.is_action_just_pressed("LeftClick"):
     var camera := get_tree().get_nodes_in_group("Camera")[0] as Camera3D
