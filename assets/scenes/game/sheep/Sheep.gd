@@ -17,14 +17,23 @@ class_name Sheep
 @export var weight_align: float = 0.2
 @export var weight_dog: float = 2.0
 @export var weight_wander: float = 0.5
+@export var weight_bark: float = 4.0
+
+enum State {
+  IDLE,
+  FLEE,
+  IN_CORRAL
+}
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 
 var goal_point: Vector3 = Vector3.ZERO
 var rnd := RandomNumberGenerator.new()
+var state: State = State.IDLE
 
 var _neighbors: Array[Node] = []
 var _dogs: Array[Node] = []
+var _barks: Array[Node] = []
 
 func _ready() -> void:
   rnd.randomize()
@@ -35,6 +44,16 @@ func collided_with_dog(dog: Dog) -> void:
 
 func collided_with_dog_exited(dog: Dog) -> void:
   _dogs.erase(dog)
+
+func collided_with_dog_bark(bark: Node) -> void:
+  if _barks.size() == 0 and state == State.IDLE:
+    state = State.FLEE
+  _barks.append(bark)
+
+func collided_with_dog_bark_exited(bark: Node) -> void:
+  _barks.erase(bark)
+  if _barks.size() == 0 and state == State.FLEE:
+    state = State.IDLE
 
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
     # Apply the avoidance-adjusted velocity to the body
@@ -73,6 +92,9 @@ func _physics_process(_delta: float) -> void:
 
   # Dog repulsion
   steer += _dog_repulsion(_dogs) * weight_dog
+
+  # Bark repulsion
+  steer += _bark_repulsion(_barks) * weight_bark
 
   # Wander
   steer += _wander() * weight_wander
@@ -131,6 +153,15 @@ func _dog_repulsion(dogs: Array) -> Vector3:
         if dist < dog_fear_radius and dist > 0.001:
             # Heavier inverse-square, scales up close to the dog
             f += off.normalized() * (1.0 / (dist * dist))
+    return f
+
+func _bark_repulsion(barks: Array) -> Vector3:
+    var f := Vector3.ZERO
+    for b in barks:
+        var off: Vector3 = global_position - b.global_position
+        var dist: float = off.length()
+        if dist > 0.001:
+          f += off.normalized() * (1.0 / (dist * dist))
     return f
 
 func _wander() -> Vector3:
