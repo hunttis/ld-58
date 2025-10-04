@@ -31,3 +31,6 @@ one_shot = true
 [node name="BarkAudio" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_kl8mv")
 bus = &"Sound"
+
+[connection signal="body_entered" from="BarkThreatRange" to="." method="_on_bark_threat_range_body_entered"]
+[connection signal="body_exited" from="BarkThreatRange" to="." method="_on_bark_threat_range_body_exited"]
