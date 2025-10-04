@@ -22,3 +22,4 @@ shadow_enabled = true
 [node name="Laidun" parent="." instance=ExtResource("4_cb5na")]
 
 [node name="Dog" parent="." instance=ExtResource("4_j62u1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 20)
