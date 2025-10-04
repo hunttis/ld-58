@@ -18,7 +18,7 @@ class_name Sheep
 @export var weight_align: float = 0.2
 @export var weight_dog: float = 2.0
 @export var weight_wander: float = 0.5
-@export var weight_bark: float = 4.0
+@export var weight_bark: float = 20
 
 enum State {
   IDLE,
