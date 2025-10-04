@@ -9,8 +9,10 @@ size = Vector3(0.904541, 0.90527344, 1.5105591)
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 16
 script = ExtResource("1_i4pnq")
+max_flee_speed = 20.0
 weight_separation = 0.2
 weight_dog = 10.0
+weight_bark = 200.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0052490234, 0.45263672, -0.04812622)
