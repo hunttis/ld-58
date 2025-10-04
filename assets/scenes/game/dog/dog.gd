@@ -63,15 +63,8 @@ func _ready():
   move_state = MOVE_STATE.NORMAL
   speed = normal_speed
   add_to_group("dog")
-  agent.connect("navigation_finished",
-  func():
-    if move_state == MOVE_STATE.DASH:
-      move_state = MOVE_STATE.NORMAL
-      speed = normal_speed
-    )
 
 func _process(delta):
-  print("VELOCITY:", velocity)
   if (move_state == MOVE_STATE.NORMAL || velocity == Vector3.ZERO) && cur_stamina < max_stamina:
     cur_stamina = min(cur_stamina + stamina_regen * delta, max_stamina)
 
@@ -131,6 +124,7 @@ func _unhandled_input(event: InputEvent):
 func _bark():
   if cur_stamina < bark_stamina_cost:
     return
+    
   cur_stamina -= bark_stamina_cost
   var bark_inst = bark_scene.instantiate() as Bark
   bark_inst.position = global_position
