@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dwa2yq4tabt6r" path="res://assets/models/koira.gltf" id="1_yvigx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvigx"]
-size = Vector3(1, 0.78308105, 1.3369141)
+size = Vector3(0.41906738, 0.7514038, 1.3369141)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yvigx"]
 radius = 8.0
@@ -17,7 +17,7 @@ bark_cooldown = 0.5
 transform = Transform3D(-0.05, 0, -4.371139e-09, 0, 0.05, 0, 4.371139e-09, 0, -0.05, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39154053, -0.07470703)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0033569336, 0.39217424, -0.07470703)
 shape = SubResource("BoxShape3D_yvigx")
 
 [node name="MoveThreatRange" type="Area3D" parent="."]
@@ -33,6 +33,6 @@ wait_time = 2.5
 one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
 avoidance_enabled = true
 radius = 4.05
-path_height_offset = 0.5

@@ -56,7 +56,7 @@ func _physics_process(_delta: float) -> void:
     var dir = global_position.direction_to(dash_target)
     velocity = dir * dash_speed
     var collided = move_and_slide()
-    if collided || global_position.distance_to(dash_target) <= 1:
+    if global_position.distance_to(dash_target) <= 1 || collided:
       move_state = MOVE_STATE.NORMAL
       agent.target_position = global_position
 
@@ -96,7 +96,9 @@ func _dash():
   print("DASH BABY!")
   agent.target_position = global_position
   var dash_dir = global_position.direction_to(get_vector_to_cursor_pos())
+  dash_dir.y = 0
   dash_target = global_position + (dash_dir * dash_distance)
+  print("Dash target: ", dash_target)
   move_state = MOVE_STATE.DASH
 
 func get_vector_to_cursor_pos() -> Vector3:
