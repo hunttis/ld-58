@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8hii7jmloklt"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_htd2r"]
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oc73f"]
+albedo_color = Color(0.19612399, 0.28652012, 0.088972054, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qv4w3"]
+material = SubResource("StandardMaterial3D_oc73f")
+size = Vector2(100, 100)
+
+[node name="Laidun" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_htd2r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_qv4w3")

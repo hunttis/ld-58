@@ -1,22 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://41ihcei70jgf"]
+[gd_scene load_steps=4 format=3 uid="uid://41ihcei70jgf"]
 
 [ext_resource type="Script" uid="uid://cdndksq01g27t" path="res://assets/scenes/game.gd" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb66b"]
-albedo_color = Color(0.19612399, 0.28652012, 0.088972054, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_dis88"]
-material = SubResource("StandardMaterial3D_cb66b")
-size = Vector2(100, 100)
+[ext_resource type="PackedScene" uid="uid://c8hii7jmloklt" path="res://assets/scenes/game/laidun/laidun.tscn" id="4_cb5na"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_5gf0t")
 
 [node name="Ui" parent="." instance=ExtResource("1_cb66b")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_dis88")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.7774425, 0.6289542, 0, -0.6289542, 0.7774425, 0, 20.249668, 36.79419)
@@ -26,3 +17,5 @@ current = true
 transform = Transform3D(0.0069024093, -0.65268046, 0.7576019, 0.0059462376, 0.7576333, 0.6526534, -0.9999585, 0, 0.009110489, 53.40571, 14.066107, -23.626686)
 light_energy = 2.0
 shadow_enabled = true
+
+[node name="Laidun" parent="." instance=ExtResource("4_cb5na")]
