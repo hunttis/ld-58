@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b32fyljsyd61b"]
+
+[ext_resource type="PackedScene" uid="uid://do8uhbua240ci" path="res://assets/models/juomakaukalo.gltf" id="1_6no3u"]
+
+[node name="juomakaukalo" instance=ExtResource("1_6no3u")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b510287mpwucb"]
+
+[ext_resource type="PackedScene" uid="uid://wc7ictj0vjji" path="res://assets/models/pusikko.gltf" id="1_bnn6t"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sobu4"]
+radius = 4.8280644
+
+[node name="Bush" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6609764, 0, -0.43017864)
+shape = SubResource("SphereShape3D_sobu4")
+
+[node name="pusikko" parent="." instance=ExtResource("1_bnn6t")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
