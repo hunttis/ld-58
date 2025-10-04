@@ -5,103 +5,70 @@
 [node name="Fences" type="Node3D"]
 
 [node name="Fence" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, -7.8082848)
-
-[node name="Fence2" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, -6.133355)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.645056, 0, 0.56470203)
 
 [node name="Fence3" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, -4.4404383)
-
-[node name="Fence4" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, -2.7655087)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.580753, 9.536743e-07, -2.7729921)
 
 [node name="Fence5" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, -1.0285196)
-
-[node name="Fence6" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, 0.64641)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.615658, 0, -6.1765885)
 
 [node name="Fence7" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, 2.3570464)
-
-[node name="Fence8" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, 4.0319757)
-
-[node name="Fence13" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, -7.8082848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.63661, 0, 3.8928487)
 
 [node name="Fence14" parent="." instance=ExtResource("1_fvpbb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, -6.133355)
 
-[node name="Fence15" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, -4.4404383)
-
 [node name="Fence16" parent="." instance=ExtResource("1_fvpbb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, -2.7655087)
-
-[node name="Fence17" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, -1.0285196)
 
 [node name="Fence18" parent="." instance=ExtResource("1_fvpbb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, 0.64641)
 
-[node name="Fence19" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, 2.3570464)
-
 [node name="Fence20" parent="." instance=ExtResource("1_fvpbb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, 4.0319757)
-
-[node name="Fence21" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, 5.7563286)
 
 [node name="Fence22" parent="." instance=ExtResource("1_fvpbb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, 7.431258)
 
-[node name="Fence23" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, 9.124175)
-
 [node name="Fence24" parent="." instance=ExtResource("1_fvpbb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.276367, 0, 10.799105)
 
-[node name="Fence25" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -32.27012, 0, 12.446388)
-
 [node name="Fence26" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -30.596676, 0, 12.37587)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -32.015266, 0, 13.600879)
 
 [node name="Fence27" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -28.887556, 0, 12.303848)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -29.168402, 0, 13.383924)
 
 [node name="Fence28" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -27.214111, 0, 12.23333)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -26.060131, 0, 13.511407)
 
 [node name="Fence9" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, 9.252065)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.561726, 0, 10.803616)
 
 [node name="Fence10" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.213623, 0, 10.926994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.508583, 0, 7.5747375)
 
 [node name="Fence11" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -23.881536, 0, 12.125444)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -22.804163, 0, 13.527066)
 
 [node name="Fence12" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -25.55429, 0, 12.210768)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.969805, 0, 13.733374)
 
 [node name="Fence29" parent="." instance=ExtResource("1_fvpbb")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -32.27012, 0, -9.142013)
 
 [node name="Fence30" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30.596676, 0, -9.212531)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16.414423, 0, -9.38249)
 
 [node name="Fence31" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.887556, 0, -9.284553)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.61003, 0, -9.310521)
 
 [node name="Fence32" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.214111, 0, -9.355071)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -29.046356, 0, -9.303767)
 
 [node name="Fence33" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23.881536, 0, -9.462956)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.670227, 0, -9.347506)
 
 [node name="Fence34" parent="." instance=ExtResource("1_fvpbb")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.55429, 0, -9.377633)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.945036, 0, -9.221426)
