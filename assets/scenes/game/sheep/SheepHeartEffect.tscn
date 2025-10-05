@@ -33,7 +33,7 @@ turbulence_noise_strength = 5.0
 [node name="SheepHeartEffect" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_qcug8")
 emitting = false
-amount = 3
+amount = 1
 one_shot = true
 explosiveness = 0.8
 fixed_fps = 60
