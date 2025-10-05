@@ -28,6 +28,8 @@ stream_7/stream = ExtResource("10_scgcc")
 stream_8/stream = ExtResource("11_6t7sf")
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+axis_lock_linear_y = true
+motion_mode = 1
 safe_margin = 0.1
 script = ExtResource("1_xencp")
 weight_separation = 0.2
