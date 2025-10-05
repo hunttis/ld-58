@@ -18,10 +18,10 @@ const bark_scene = preload("uid://ywcmei680bhq")
 
 @export_category("Abilities")
 @export var bark_cooldown = 2.5
-@export var bark_stamina_cost = 30.0
+@export var bark_stamina_cost = 25.0
 @export var dash_cooldown = 1.5
-@export var dash_stamina_cost = 25.0
-@export var sprint_stamina_cost = 20.0
+@export var dash_stamina_cost = 20.0
+@export var sprint_stamina_cost = 15.0
 
 @export_category("Stamina")
 @export var max_stamina = 100
