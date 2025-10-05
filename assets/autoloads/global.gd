@@ -5,3 +5,5 @@ enum DOG_MOVE_STATE {
   SPRINT,
   DASH
 }
+
+var rescuedSheepCount = 0

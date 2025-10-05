@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://jwgqywlhue5p" path="res://assets/scenes/game/laidun/House.tscn" id="3_x2auq"]
 [ext_resource type="PackedScene" uid="uid://blu6cne0airse" path="res://assets/scenes/game/laidun/tree_cone.tscn" id="4_i1l5e"]
 [ext_resource type="PackedScene" uid="uid://cbkb414l546io" path="res://assets/scenes/game/laidun/tree_round.tscn" id="5_i1l5e"]
-[ext_resource type="PackedScene" path="res://assets/scenes/game/laidun/bush.tscn" id="6_r6ci1"]
+[ext_resource type="PackedScene" uid="uid://b510287mpwucb" path="res://assets/scenes/game/laidun/bush.tscn" id="6_r6ci1"]
 [ext_resource type="PackedScene" uid="uid://bvdciyghvg8s6" path="res://assets/scenes/game/laidun/Flowers.tscn" id="7_j2oig"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_htd2r"]

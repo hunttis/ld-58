@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://17qoniqtyvb4"]
+[gd_scene load_steps=7 format=3 uid="uid://17qoniqtyvb4"]
 
 [ext_resource type="Script" uid="uid://blo50cupp2cta" path="res://assets/scenes/menus/main_menu.gd" id="1_uu6ob"]
+[ext_resource type="Texture2D" uid="uid://1h166t28cqb4" path="res://assets/images/doggo.png" id="2_a1fdk"]
+[ext_resource type="Texture2D" uid="uid://wa7vccdsu0iw" path="res://assets/images/talo.png" id="2_eoi6q"]
+[ext_resource type="Texture2D" uid="uid://b1q76dc0iqinh" path="res://assets/images/lammas.png" id="4_hhlo6"]
+
+[sub_resource type="Gradient" id="Gradient_qclk0"]
+offsets = PackedFloat32Array(0, 0.42, 0.50666666, 0.5133333, 1)
+colors = PackedColorArray(0.50281674, 0.6633021, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0.5137255, 0, 1, 0.6238186, 1, 0.5938983, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qmlkl"]
+gradient = SubResource("Gradient_qclk0")
+fill_to = Vector2(0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,6 +33,24 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="TextureRect" type="TextureRect" parent="ScreenSizeContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_qmlkl")
+
+[node name="Talo" type="TextureRect" parent="ScreenSizeContainer"]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 68.0
+offset_right = 1236.0
+offset_bottom = 602.0
+texture = ExtResource("2_eoi6q")
+expand_mode = 1
+
 [node name="VerticalContainer" type="VBoxContainer" parent="ScreenSizeContainer"]
 layout_mode = 1
 anchors_preset = 15
@@ -31,6 +60,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TopSpacer" type="Control" parent="ScreenSizeContainer/VerticalContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
@@ -38,9 +68,13 @@ size_flags_stretch_ratio = 0.5
 [node name="GameTitle" type="RichTextLabel" parent="ScreenSizeContainer/VerticalContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 64
+theme_override_colors/default_color = Color(0.9991098, 0.99451, 0.99340385, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center]Game Title[/center]"
+text = "[center]Sheep Collector[/center]"
 fit_content = true
 scroll_active = false
 
@@ -64,6 +98,7 @@ focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../OptionsButton")
 focus_next = NodePath("../OptionsButton")
 focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 32
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
@@ -72,6 +107,7 @@ focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../StartButton")
+theme_override_font_sizes/font_size = 32
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
@@ -80,12 +116,32 @@ focus_neighbor_top = NodePath("../OptionsButton")
 focus_neighbor_bottom = NodePath("../StartButton")
 focus_next = NodePath("../StartButton")
 focus_previous = NodePath("../OptionsButton")
+theme_override_font_sizes/font_size = 32
 text = "Quit"
 
 [node name="BottomSpacer" type="Control" parent="ScreenSizeContainer/VerticalContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 712.0
+offset_top = 264.0
+offset_right = 1394.0
+offset_bottom = 746.0
+texture = ExtResource("2_a1fdk")
+stretch_mode = 2
+
+[node name="Lammas2" type="Sprite2D" parent="."]
+modulate = Color(0.74558026, 0.7455802, 0.7455802, 1)
+position = Vector2(229.00002, 492)
+scale = Vector2(0.7003929, 0.6944444)
+texture = ExtResource("4_hhlo6")
+
+[node name="Lammas" type="Sprite2D" parent="."]
+position = Vector2(116, 653)
+texture = ExtResource("4_hhlo6")
 
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
