@@ -74,6 +74,7 @@ func _process(delta):
 func _physics_process(delta: float) -> void:
   var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
   var move_dir = Vector3(input_dir.x, 0, input_dir.y)
+  
   move_dir = move_dir.rotated(Vector3.UP, camera_rotation)
   if move_state != Global.DOG_MOVE_STATE.DASH:
     if move_dir.length() > 0:
@@ -113,12 +114,12 @@ func _input(event):
 
 func _unhandled_input(event: InputEvent):
     if event.is_action_pressed("ability_sprint"):
-      match move_state:
-        Global.DOG_MOVE_STATE.NORMAL:
-          move_state = Global.DOG_MOVE_STATE.SPRINT
-
-        Global.DOG_MOVE_STATE.SPRINT:
-          move_state = Global.DOG_MOVE_STATE.NORMAL
+      if move_state == Global.DOG_MOVE_STATE.NORMAL:
+        move_state = Global.DOG_MOVE_STATE.SPRINT
+    
+    if event.is_action_released("ability_sprint"):
+      if move_state == Global.DOG_MOVE_STATE.SPRINT:
+        move_state = Global.DOG_MOVE_STATE.NORMAL
 
 func _bark():
   if cur_stamina < bark_stamina_cost:
