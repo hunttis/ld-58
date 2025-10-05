@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://41ihcei70jgf"]
+[gd_scene load_steps=13 format=3 uid="uid://41ihcei70jgf"]
 
 [ext_resource type="Script" uid="uid://cdndksq01g27t" path="res://assets/scenes/game.gd" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
@@ -8,10 +8,25 @@
 [ext_resource type="PackedScene" uid="uid://7gs0odw1wvb2" path="res://assets/scenes/game/goat/Goat.tscn" id="6_5aext"]
 [ext_resource type="PackedScene" uid="uid://divjv3eaenwq7" path="res://assets/scenes/game/sheep/Sheep.tscn" id="7_3w2km"]
 
-[sub_resource type="Environment" id="Environment_j62u1"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3w2km"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3w2km"]
+noise = SubResource("FastNoiseLite_3w2km")
+seamless = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wfsp4"]
+sky_top_color = Color(0.2960263, 0.3570985, 0.43732786, 1)
+sky_horizon_color = Color(0.85671973, 0.8606268, 0.8684334, 1)
+sky_cover = SubResource("NoiseTexture2D_3w2km")
+
+[sub_resource type="Sky" id="Sky_pw37s"]
+sky_material = SubResource("ProceduralSkyMaterial_wfsp4")
+
+[sub_resource type="Environment" id="Environment_k2t1h"]
+background_mode = 2
+sky = SubResource("Sky_pw37s")
 ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.5
+ambient_light_energy = 1.5
 
 [node name="Game" type="Node3D" groups=["Game"]]
 script = ExtResource("1_5gf0t")
@@ -24,8 +39,7 @@ one_shot = true
 level_timer = NodePath("../LevelTimer")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target") groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.74201095, 0.67038786, 0, -0.67038786, 0.74201095, 0, 15.005146, 16.981813)
-environment = SubResource("Environment_j62u1")
+transform = Transform3D(1, 0, 0, 0, 0.9874138, 0.15815806, 0, -0.15815806, 0.9874138, 0, 15.005146, 16.981813)
 current = true
 script = ExtResource("3_j62u1")
 target = NodePath("../Dog")
@@ -35,7 +49,7 @@ current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0069024093, -0.65268046, 0.7576019, 0.0059462376, 0.7576333, 0.6526534, -0.9999585, 0, 0.009110489, 53.40571, 14.066107, -23.626686)
-light_energy = 2.0
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="Laidun" parent="." instance=ExtResource("4_cb5na")]
@@ -255,6 +269,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.4542, 0, 17.786888)
 
 [node name="GlobalBleatTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k2t1h")
 
 [connection signal="level_complete" from="." to="Ui" method="on_level_complete"]
 [connection signal="level_failed" from="." to="Ui" method="on_game_over"]

@@ -22,7 +22,7 @@ func _ready():
   Events.point_update.emit(0, total_sheep)
   Events.sheep_coralled.connect(_on_sheep_coralled)
   Events.sheep_bleating.connect(
-    func(): 
+    func():
       global_bleat_timer.start(randf_range(global_bleat_timeout_min, global_bleat_timeout_max))
       Events.global_bleat_cooldown_start.emit()
       )
