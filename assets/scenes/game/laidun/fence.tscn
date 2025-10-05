@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://di3nethyohclf" path="res://assets/models/kiviaita.gltf" id="2_ownmn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ownmn"]
-size = Vector3(3.2460938, 5.2352295, 3.28125)
+size = Vector3(3.2460938, 18.510406, 3.28125)
 
 [node name="Fence" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00076413155, 1.2771616, -0.028033018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00076413155, 7.91475, -0.028033018)
 shape = SubResource("BoxShape3D_ownmn")
 
 [node name="aita" parent="." instance=ExtResource("1_11586")]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://blu6cne0airse"]
+
+[ext_resource type="PackedScene" uid="uid://dck1k2xbyol78" path="res://assets/models/kuusi.gltf" id="1_lhmvs"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jlg11"]
+height = 13.981934
+radius = 7.895508
+
+[node name="TreeCone" type="StaticBody3D"]
+
+[node name="kuusi" parent="." instance=ExtResource("1_lhmvs")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0116048455, 5.990967, 0)
+shape = SubResource("CylinderShape3D_jlg11")
