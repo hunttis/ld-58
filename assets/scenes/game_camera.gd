@@ -25,6 +25,7 @@ func _ready() -> void:
   camera_offset = global_position
   tilt_axis = Vector3.LEFT
   inverter = -1 if Global.yAxisInverted else 1
+  Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
   global_position = target.global_position + camera_offset
