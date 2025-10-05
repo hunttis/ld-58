@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://dqo1mf7iuu88u" path="res://assets/models/talo.gltf" id="1_cgrav"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4pn2w"]
-size = Vector3(2.7025146, 2.6393433, 2.697754)
+size = Vector3(25.970528, 12.957367, 27.049927)
 
 [node name="House" type="StaticBody3D"]
 
 [node name="talo" parent="." instance=ExtResource("1_cgrav")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012512207, 0.81967163, -0.064697266)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0002394, 5.9786835, -0.5182495)
 shape = SubResource("BoxShape3D_4pn2w")
