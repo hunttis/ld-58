@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2n143c74e0i6"]
+[gd_scene load_steps=6 format=3 uid="uid://d2n143c74e0i6"]
 
-[ext_resource type="Script" uid="uid://3joj5t57chve" path="res://assets/scenes/ui/stamina_bar.gd" id="1_7mnxw"]
-[ext_resource type="Script" uid="uid://3q6k87wkyfdi" path="res://assets/scenes/ui/points.gd" id="2_pwtnk"]
-[ext_resource type="Script" uid="uid://45qn7f12oljx" path="res://assets/scenes/ui/move_container.gd" id="2_wlc6l"]
+[ext_resource type="Script" path="res://assets/scenes/ui/stamina_bar.gd" id="1_7mnxw"]
+[ext_resource type="Script" uid="uid://clq3efw6cwxs7" path="res://assets/scenes/ui/ui.gd" id="1_166pj"]
+[ext_resource type="Script" path="res://assets/scenes/ui/points.gd" id="2_pwtnk"]
+[ext_resource type="Script" path="res://assets/scenes/ui/move_container.gd" id="2_wlc6l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcsp3"]
 bg_color = Color(0.2549444, 0.6885749, 0.4217892, 1)
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_166pj")
 
 [node name="StaminaBar" type="ProgressBar" parent="."]
 layout_mode = 1
@@ -80,3 +82,33 @@ layout_mode = 2
 [node name="Dash" type="ColorRect" parent="MoveContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 465.0
+offset_top = 288.0
+offset_right = 790.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(1, 0.18431373, 0.16862746, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameWonLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 465.0
+offset_top = 288.0
+offset_right = 790.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(0, 0.92156863, 0.1882353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 60
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1

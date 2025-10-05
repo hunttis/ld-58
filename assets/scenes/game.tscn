@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdndksq01g27t" path="res://assets/scenes/game.gd" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
-[ext_resource type="Script" path="res://assets/scenes/game_camera.gd" id="3_j62u1"]
+[ext_resource type="Script" uid="uid://b8frmew3bsekw" path="res://assets/scenes/game_camera.gd" id="3_j62u1"]
 [ext_resource type="PackedScene" uid="uid://c8hii7jmloklt" path="res://assets/scenes/game/laidun/laidun.tscn" id="4_cb5na"]
 [ext_resource type="PackedScene" uid="uid://dpidycji3x0sk" path="res://assets/scenes/game/dog/Dog.tscn" id="4_j62u1"]
 [ext_resource type="PackedScene" uid="uid://7gs0odw1wvb2" path="res://assets/scenes/game/goat/Goat.tscn" id="6_5aext"]
@@ -15,7 +15,12 @@ ambient_light_energy = 0.5
 [node name="Game" type="Node3D" groups=["Game"]]
 script = ExtResource("1_5gf0t")
 
-[node name="Ui" parent="." instance=ExtResource("1_cb66b")]
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="Ui" parent="." node_paths=PackedStringArray("level_timer") instance=ExtResource("1_cb66b")]
+level_timer = NodePath("../LevelTimer")
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.74201095, 0.67038786, 0, -0.67038786, 0.74201095, 0, 15.005146, 16.981813)
@@ -34,3 +39,7 @@ shadow_enabled = true
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("6_5aext")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.924397, 0, 4.0398)
+
+[connection signal="level_complete" from="." to="Ui" method="on_level_complete"]
+[connection signal="level_failed" from="." to="Ui" method="on_game_over"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

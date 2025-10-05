@@ -181,7 +181,6 @@ func _dog_repulsion(dogs: Array) -> Vector3:
   return f
 
 func _bark_repulsion(barks: Array) -> Vector3:
-
   if state == State.IN_CORRAL:
     return Vector3.ZERO
   var f := Vector3.ZERO
