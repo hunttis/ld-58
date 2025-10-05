@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3eo74i1aytio"]
+[gd_scene load_steps=4 format=3 uid="uid://d3eo74i1aytio"]
 
 [ext_resource type="Script" uid="uid://mrf7v5r1ar20" path="res://assets/scenes/master.gd" id="1_xvgtq"]
+[ext_resource type="AudioStream" uid="uid://c55cx1bk0a5iq" path="res://assets/audio/music/LD58 title.mp3" id="2_723qe"]
+[ext_resource type="AudioStream" uid="uid://b6sde1rdks5ff" path="res://assets/audio/music/LD58 main.mp3" id="3_tpt81"]
 
 [node name="Master" type="Node2D"]
 script = ExtResource("1_xvgtq")
@@ -12,3 +14,12 @@ offset_right = 1280.0
 offset_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="AudioStreamPlayerTitle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_723qe")
+autoplay = true
+bus = &"Music"
+
+[node name="AudioStreamPlayerGame" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tpt81")
+autoplay = true

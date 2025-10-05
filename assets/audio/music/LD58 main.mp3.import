@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6sde1rdks5ff"
+path="res://.godot/imported/LD58 main.mp3-290f1c4fb236ff13ba6f730a97f6e931.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/LD58 main.mp3"
+dest_files=["res://.godot/imported/LD58 main.mp3-290f1c4fb236ff13ba6f730a97f6e931.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=120.0
+beat_count=32
+bar_beats=4
