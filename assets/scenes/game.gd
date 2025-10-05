@@ -2,6 +2,7 @@ extends Node3D
 
 const SheepScene = preload("uid://divjv3eaenwq7")
 var heart_fx_scene = preload("res://assets/scenes/game/sheep/SheepHeartEffect.tscn")
+var bark_fx_scene = preload("res://assets/scenes/game/dog/BarkEffect.tscn")
 
 var total_sheep
 var coralled_sheep: set = _set_coralled_sheep
@@ -19,6 +20,10 @@ func _ready():
   var heart_fx = heart_fx_scene.instantiate()
   add_child(heart_fx)
   heart_fx.visible = false
+  var bark_fx = bark_fx_scene.instantiate()
+  add_child(bark_fx)
+  bark_fx.visible = false
+  
   add_child(level_timer)
   coralled_sheep = 0
 
