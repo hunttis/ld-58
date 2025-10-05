@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2n143c74e0i6"]
+[gd_scene load_steps=4 format=3 uid="uid://d2n143c74e0i6"]
 
 [ext_resource type="Script" uid="uid://3joj5t57chve" path="res://assets/scenes/ui/stamina_bar.gd" id="1_7mnxw"]
+[ext_resource type="Script" uid="uid://45qn7f12oljx" path="res://assets/scenes/ui/move_container.gd" id="2_wlc6l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcsp3"]
 bg_color = Color(0.2549444, 0.6885749, 0.4217892, 1)
@@ -55,3 +56,25 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Da Time!"
+
+[node name="MoveContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 620.0
+offset_right = 115.0
+offset_bottom = 645.0
+theme_override_constants/separation = 5
+script = ExtResource("2_wlc6l")
+
+[node name="Jog" type="ColorRect" parent="MoveContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+
+[node name="Sprint" type="ColorRect" parent="MoveContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+
+[node name="Dash" type="ColorRect" parent="MoveContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2

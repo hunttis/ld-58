@@ -19,20 +19,14 @@ const bark_scene = preload("uid://ywcmei680bhq")
 
 @export_category("Abilities")
 @export var bark_cooldown = 2.5
+@export var bark_stamina_cost = 30.0
 @export var dash_cooldown = 1.5
 @export var dash_stamina_cost = 25.0
-@export var bark_stamina_cost = 30.0
 @export var sprint_stamina_cost = 20.0
 
 @export_category("Stamina")
 @export var max_stamina = 100
 @export var stamina_regen = 20
-
-enum MOVE_STATE {
-  NORMAL,
-  SPRINT,
-  DASH
-}
 
 var speed: float
 var dash_target: Vector3 = Vector3.ZERO
@@ -44,32 +38,33 @@ func set_cur_stamina(new_val: float):
   Events.stamina_change.emit(new_val/max_stamina)
 
 
-func _set_move_state(new_state: MOVE_STATE)->void:
+func _set_move_state(new_state: Global.DOG_MOVE_STATE)->void:
   move_state = new_state
+  Events.dog_move_state_change.emit(new_state)
   match new_state:
-    MOVE_STATE.SPRINT:
-      move_state = MOVE_STATE.SPRINT
+    Global.DOG_MOVE_STATE.SPRINT:
+      move_state = Global.DOG_MOVE_STATE.SPRINT
       set_repulsion_range(sprint_threat_range)
       speed = sprint_speed
       
-    MOVE_STATE.NORMAL:
-      move_state = MOVE_STATE.NORMAL
+    Global.DOG_MOVE_STATE.NORMAL:
+      move_state = Global.DOG_MOVE_STATE.NORMAL
       set_repulsion_range(normal_threat_range)
       speed = normal_speed
   
 
 func _ready():
   cur_stamina = max_stamina
-  move_state = MOVE_STATE.NORMAL
+  move_state = Global.DOG_MOVE_STATE.NORMAL
   speed = normal_speed
   add_to_group("dog")
 
 func _process(delta):
-  if (move_state == MOVE_STATE.NORMAL || velocity == Vector3.ZERO) && cur_stamina < max_stamina:
+  if (move_state == Global.DOG_MOVE_STATE.NORMAL || velocity == Vector3.ZERO) && cur_stamina < max_stamina:
     cur_stamina = min(cur_stamina + stamina_regen * delta, max_stamina)
 
 func _physics_process(delta: float) -> void:
-  if move_state != MOVE_STATE.DASH:
+  if move_state != Global.DOG_MOVE_STATE.DASH:
     var move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
     if move_dir.length() > 0:
       agent.target_position = global_position + Vector3(move_dir.x, 0, move_dir.y) * 10
@@ -84,22 +79,22 @@ func _physics_process(delta: float) -> void:
     look_at(Vector3(look_target.x, global_position.y, look_target.z))
     move_and_slide()
     
-    if move_state == MOVE_STATE.SPRINT:
+    if move_state == Global.DOG_MOVE_STATE.SPRINT:
       cur_stamina = max(cur_stamina - sprint_stamina_cost * delta ,0)
       if cur_stamina <= 0:
-        move_state = MOVE_STATE.NORMAL
+        move_state = Global.DOG_MOVE_STATE.NORMAL
 
-  if move_state == MOVE_STATE.DASH:
+  if move_state == Global.DOG_MOVE_STATE.DASH:
     var dir = global_position.direction_to(dash_target)
     velocity = dir * dash_speed
     var collided = move_and_slide()
     if global_position.distance_to(dash_target) <= 1 || collided:
-      move_state = MOVE_STATE.NORMAL
+      move_state = Global.DOG_MOVE_STATE.NORMAL
       agent.target_position = global_position
       velocity = Vector3.ZERO
 
 func _input(_event) -> void:
-  if Input.is_action_just_pressed("LeftClick") && move_state != MOVE_STATE.DASH:
+  if Input.is_action_just_pressed("LeftClick") && move_state != Global.DOG_MOVE_STATE.DASH:
     var target = get_vector_to_cursor_pos()
     print('Clicked', target)
     agent.target_position = target
@@ -108,17 +103,17 @@ func _input(_event) -> void:
 func _unhandled_input(event: InputEvent):
     if event.is_action_pressed("ability_q"):
       match move_state:
-        MOVE_STATE.NORMAL:
-          move_state = MOVE_STATE.SPRINT
+        Global.DOG_MOVE_STATE.NORMAL:
+          move_state = Global.DOG_MOVE_STATE.SPRINT
 
-        MOVE_STATE.SPRINT:
-          move_state = MOVE_STATE.NORMAL
+        Global.DOG_MOVE_STATE.SPRINT:
+          move_state = Global.DOG_MOVE_STATE.NORMAL
 
     if event.is_action_pressed("ability_w") && barkCooldown.is_stopped():
       _bark()
       barkCooldown.start(bark_cooldown)
 
-    if event.is_action_pressed("ability_e") && move_state != MOVE_STATE.DASH:
+    if event.is_action_pressed("ability_e") && move_state != Global.DOG_MOVE_STATE.DASH:
       _dash()
 
 func _bark():
@@ -142,7 +137,7 @@ func _dash():
   dash_dir.y = 0
   dash_target = global_position + (dash_dir * dash_distance)
   print("Dash target: ", dash_target)
-  move_state = MOVE_STATE.DASH
+  move_state = Global.DOG_MOVE_STATE.DASH
 
 func get_vector_to_cursor_pos() -> Vector3:
   var camera := get_tree().get_nodes_in_group("Camera")[0] as Camera3D
