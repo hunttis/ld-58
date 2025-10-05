@@ -2,7 +2,7 @@ extends Control
 
 @export var level_timer: Timer
 
-@onready var _timer_label: Label = $MarginContainer/Time
+@onready var _timer_label: Label = $Panel2/Time
 
 func _process(_delta: float):
   if level_timer.time_left > 0:
