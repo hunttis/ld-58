@@ -212,11 +212,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2990551, 0, 5.7314434)
 [node name="Sheep49" parent="SheepFlock1" instance=ExtResource("7_3w2km")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.9937706)
 
+[node name="Sheep50" parent="SheepFlock1" instance=ExtResource("7_3w2km")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1274033, 0, 16.816906)
+
 [node name="SheepFlock2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.4542, 0, 17.786888)
-
-[node name="Sheep50" parent="SheepFlock2" instance=ExtResource("7_3w2km")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.586601, 0, 8.718067)
 
 [node name="Sheep51" parent="SheepFlock2" instance=ExtResource("7_3w2km")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0698471, 0, 12.879019)
