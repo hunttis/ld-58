@@ -20,6 +20,8 @@ class_name Sheep
 @export var weight_bark: float = 20
 @export var weight_goal: float = 20
 
+@export var neighbor_radius: float = 40.0
+
 enum State {
   IDLE,
   FLEE,
@@ -27,7 +29,6 @@ enum State {
 }
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
-
 
 var goal_point: Vector3 = Vector3.ZERO
 var rnd := RandomNumberGenerator.new()
@@ -84,7 +85,7 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
     move_and_slide()
 
 func _physics_process(_delta: float) -> void:
-  _neighbors = get_tree().get_nodes_in_group("sheep")
+  _update_neighbors()
 
   var steer := Vector3.ZERO
   if goal_point != Vector3.ZERO:
@@ -140,6 +141,18 @@ func _physics_process(_delta: float) -> void:
 
 
 # === Helper functions ===
+
+func _update_neighbors():
+  _neighbors.clear()
+
+  var all_sheeps = get_tree().get_nodes_in_group("sheep") as Array[Sheep]
+  var neighbor_radius_sq = neighbor_radius * neighbor_radius
+  for sheep in all_sheeps:
+    if sheep == self:
+      continue
+    var dist_sq = self.global_position.distance_squared_to(sheep.global_position)
+    if dist_sq < neighbor_radius_sq:
+      _neighbors.push_back(sheep)
 
 func _separation_force(neighbors: Array) -> Vector3:
     var f := Vector3.ZERO
