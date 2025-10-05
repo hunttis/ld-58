@@ -43,6 +43,10 @@ func _ready():
   level_timer.start()
   global_bleat_timer.start()
 
+func _unhandled_input(event):
+  if event.is_action_pressed("pause"):
+    Events.toggle_pause.emit()
+
 func _set_coralled_sheep(new_val: int):
   coralled_sheep = new_val
   Events.point_update.emit(coralled_sheep, total_sheep)
