@@ -7,8 +7,6 @@ var main_menu_scene_file = preload("res://assets/scenes/menus/main_menu.tscn")
 var game_end_scene_file = preload("res://assets/scenes/menus/game_end_screen.tscn")
 
 var current_scene_type: Scenes
-var musicOn = 0
-var musicOff = -80
 
 enum Scenes {
   Main_Menu,
@@ -20,7 +18,7 @@ enum Scenes {
 
 @export var default_scene: Scenes = Scenes.Main_Menu
 @onready var current_scene = $CurrentScene
-@onready var titleMusic = $"AudioStreamPlayerTitle"
+@onready var titleMusic:  = $"AudioStreamPlayerTitle"
 @onready var gameMusic = $"AudioStreamPlayerGame"
 
 
@@ -37,10 +35,9 @@ func _ready():
       _on_go_to_options()
     Scenes.Game:
       _on_go_to_game()
+      
     Scenes.Instructions:
       _on_go_to_instructions()
-
-  gameMusic.volume_db = musicOff
 
 func _empty_current_scene():
   for child_scene in current_scene.get_children():
@@ -50,7 +47,7 @@ func _on_go_to_game():
   _empty_current_scene()
   var game_scene = game_scene_file.instantiate()
   current_scene.add_child(game_scene)
-  current_scene_type = Scenes.GameEnd
+  current_scene_type = Scenes.Game
   game_scene.level_failed.connect(_on_game_end)
   game_scene.level_complete.connect(_on_game_end)
   update_music()
@@ -86,14 +83,12 @@ func _on_go_to_instructions():
 func update_music():
     match current_scene_type:
         Scenes.Game:
-            titleMusic.volume_db = musicOff
-            gameMusic.volume_db = musicOn
+          if titleMusic.playing:
+            titleMusic.playing = false
+          if !gameMusic.playing:
+            gameMusic.playing = true
         Scenes.Main_Menu:
-            titleMusic.volume_db = musicOn
-            gameMusic.volume_db = musicOff
-        Scenes.Options:
-            titleMusic.volume_db = musicOn
-            gameMusic.volume_db = musicOff
-        _:
-            titleMusic.volume_db = musicOn
-            gameMusic.volume_db = musicOff
+          if !titleMusic.playing:
+            titleMusic.playing = true
+          if gameMusic.playing:
+            gameMusic.playing = false
