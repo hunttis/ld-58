@@ -1,11 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxkkrebg77b4x"]
+[gd_scene load_steps=10 format=3 uid="uid://dxkkrebg77b4x"]
 
 [ext_resource type="PackedScene" uid="uid://daji13c00bfr0" path="res://assets/scenes/game/laidun/fence.tscn" id="1_fvpbb"]
-[ext_resource type="Script" path="res://assets/scenes/game/laidun/corral.gd" id="1_w27jl"]
+[ext_resource type="Script" uid="uid://kwdxsmpgf7jl" path="res://assets/scenes/game/laidun/corral.gd" id="1_w27jl"]
 [ext_resource type="PackedScene" uid="uid://b32fyljsyd61b" path="res://assets/scenes/game/laidun/water_trough.tscn" id="3_snsl6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvpbb"]
 size = Vector3(53.863655, 1, 51.44091)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w27jl"]
+size = Vector3(61.35742, 20, 3.7973633)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snsl6"]
+size = Vector3(59.836792, 1, 3.5947266)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb63t"]
+size = Vector3(4.025879, 1, 58.027466)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1peq1"]
+size = Vector3(39.892456, 1, 3.4282227)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjepn"]
+size = Vector3(8.258789, 1, 3.291504)
 
 [node name="Corral" type="Node3D"]
 script = ExtResource("1_w27jl")
@@ -260,5 +275,27 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.
 
 [node name="juomakaukalo" parent="." instance=ExtResource("3_snsl6")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -22.633707, 0, 14.241352)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.01593, 0, -15.596775)
+shape = SubResource("BoxShape3D_w27jl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.036015, 0, 15.231258)
+shape = SubResource("BoxShape3D_snsl6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.301517, 0, 12.416512)
+shape = SubResource("BoxShape3D_eb63t")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.813885, 0, 43.78878)
+shape = SubResource("BoxShape3D_1peq1")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.72119, 0, 41.20271)
+shape = SubResource("BoxShape3D_hjepn")
 
 [connection signal="body_entered" from="HoldingArea" to="." method="_on_holding_area_body_entered"]
