@@ -35,10 +35,10 @@ var move_state: set = _set_move_state
 
 func set_cur_stamina(new_val: float):
   cur_stamina = new_val
-  Events.stamina_change.emit(new_val/max_stamina)
+  Events.stamina_change.emit(new_val / max_stamina)
 
 
-func _set_move_state(new_state: Global.DOG_MOVE_STATE)->void:
+func _set_move_state(new_state: Global.DOG_MOVE_STATE) -> void:
   move_state = new_state
   Events.dog_move_state_change.emit(new_state)
   match new_state:
@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
     
     if move_state == Global.DOG_MOVE_STATE.SPRINT:
-      cur_stamina = max(cur_stamina - sprint_stamina_cost * delta ,0)
+      cur_stamina = max(cur_stamina - sprint_stamina_cost * delta, 0)
       if cur_stamina <= 0:
         move_state = Global.DOG_MOVE_STATE.NORMAL
 
@@ -101,7 +101,7 @@ func _input(_event) -> void:
 
 
 func _unhandled_input(event: InputEvent):
-    if event.is_action_pressed("ability_q"):
+    if event.is_action_pressed("ability_sprint"):
       match move_state:
         Global.DOG_MOVE_STATE.NORMAL:
           move_state = Global.DOG_MOVE_STATE.SPRINT
@@ -109,11 +109,11 @@ func _unhandled_input(event: InputEvent):
         Global.DOG_MOVE_STATE.SPRINT:
           move_state = Global.DOG_MOVE_STATE.NORMAL
 
-    if event.is_action_pressed("ability_w") && barkCooldown.is_stopped():
+    if event.is_action_pressed("ability_bark") && barkCooldown.is_stopped():
       _bark()
       barkCooldown.start(bark_cooldown)
 
-    if event.is_action_pressed("ability_e") && move_state != Global.DOG_MOVE_STATE.DASH:
+    if event.is_action_pressed("ability_dash") && move_state != Global.DOG_MOVE_STATE.DASH:
       _dash()
 
 func _bark():
