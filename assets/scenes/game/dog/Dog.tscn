@@ -31,8 +31,3 @@ debug_color = Color(0.8974623, 0.12784648, 0.43124294, 1)
 [node name="BarkCooldown" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 0.5
-avoidance_enabled = true
-radius = 4.05
