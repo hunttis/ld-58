@@ -1,7 +1,10 @@
 extends Control
 
+var bus = AudioServer.get_bus_index("Music")
+
 func _ready():
   $ScreenSizeContainer/VerticalContainer/MenuButtons/StartButton.grab_focus()
+  AudioServer.remove_bus_effect(bus, 0)
 
 func _on_start_button_pressed() -> void:
   Events.go_to_game.emit()
