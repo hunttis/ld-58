@@ -3,6 +3,7 @@ extends Node2D
 var game_scene_file = preload("res://assets/scenes/game.tscn")
 var options_scene_file = preload("res://assets/scenes/menus/options.tscn")
 var main_menu_scene_file = preload("res://assets/scenes/menus/main_menu.tscn")
+var game_end_scene_file = preload("res://assets/scenes/menus/game_end_screen.tscn")
 
 var current_scene_type: Scenes
 var musicOn = 0
@@ -12,6 +13,7 @@ enum Scenes {
   Main_Menu,
   Options,
   Game,
+  GameEnd
 }
 
 @export var default_scene: Scenes = Scenes.Main_Menu
@@ -43,8 +45,15 @@ func _on_go_to_game():
   _empty_current_scene()
   var game_scene = game_scene_file.instantiate()
   current_scene.add_child(game_scene)
-  current_scene_type = Scenes.Game
+  current_scene_type = Scenes.GameEnd
+  game_scene.level_failed.connect(_on_game_fail)
   update_music()
+
+func _on_game_fail():
+  _empty_current_scene()
+  var game_end_scene = game_end_scene_file.instantiate()
+  current_scene.add_child(game_end_scene)
+  current_scene_type = Scenes.Game
 
 func _on_go_to_menu():
   _empty_current_scene()
