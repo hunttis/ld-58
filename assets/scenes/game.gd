@@ -46,7 +46,7 @@ func _set_coralled_sheep(new_val: int):
 
 func _on_level_timer_timeout():
   print("Level timer timeout")
-  Global.endScreenTitle = "Good job!"
+  Global.endScreenTitle = "Game over!"
   Global.endScreenText = "You rescued " + str(coralled_sheep) + " sheep!"
   var lowpass = AudioEffectLowPassFilter.new()
   lowpass.cutoff_hz = 500

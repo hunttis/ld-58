@@ -2,6 +2,7 @@ extends Node2D
 
 var game_scene_file = preload("res://assets/scenes/game.tscn")
 var options_scene_file = preload("res://assets/scenes/menus/options.tscn")
+var instructions_scene_file = preload("res://assets/scenes/menus/instructions.tscn")
 var main_menu_scene_file = preload("res://assets/scenes/menus/main_menu.tscn")
 var game_end_scene_file = preload("res://assets/scenes/menus/game_end_screen.tscn")
 
@@ -13,7 +14,8 @@ enum Scenes {
   Main_Menu,
   Options,
   Game,
-  GameEnd
+  GameEnd,
+  Instructions
 }
 
 @export var default_scene: Scenes = Scenes.Main_Menu
@@ -26,6 +28,7 @@ func _ready():
   Events.go_to_game.connect(_on_go_to_game)
   Events.go_to_menu.connect(_on_go_to_menu)
   Events.go_to_options.connect(_on_go_to_options)
+  Events.go_to_instructions.connect(_on_go_to_instructions)
 
   match default_scene:
     Scenes.Main_Menu:
@@ -34,6 +37,8 @@ func _ready():
       _on_go_to_options()
     Scenes.Game:
       _on_go_to_game()
+    Scenes.Instructions:
+      _on_go_to_instructions()
 
   gameMusic.volume_db = musicOff
 
@@ -69,6 +74,13 @@ func _on_go_to_options():
   var options_scene = options_scene_file.instantiate()
   current_scene.add_child(options_scene)
   current_scene_type = Scenes.Options
+  update_music()
+
+func _on_go_to_instructions():
+  _empty_current_scene()
+  var instructions_scene = instructions_scene_file.instantiate()
+  current_scene.add_child(instructions_scene)
+  current_scene_type = Scenes.Instructions
   update_music()
     
 func update_music():

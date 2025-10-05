@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://wa7vccdsu0iw" path="res://assets/images/talo.png" id="2_eoi6q"]
 [ext_resource type="Texture2D" uid="uid://b1q76dc0iqinh" path="res://assets/images/lammas.png" id="4_hhlo6"]
 
-[sub_resource type="Gradient" id="Gradient_qclk0"]
+[sub_resource type="Gradient" id="Gradient_hhlo6"]
 offsets = PackedFloat32Array(0, 0.42, 0.50666666, 0.5133333, 1)
 colors = PackedColorArray(0.50281674, 0.6633021, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0.5137255, 0, 1, 0.6238186, 1, 0.5938983, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qmlkl"]
-gradient = SubResource("Gradient_qclk0")
+gradient = SubResource("Gradient_hhlo6")
 fill_to = Vector2(0, 1)
 
 [node name="MainMenu" type="Control"]
@@ -110,6 +110,11 @@ focus_previous = NodePath("../StartButton")
 theme_override_font_sizes/font_size = 32
 text = "Options"
 
+[node name="InstructionsButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Instructions"
+
 [node name="QuitButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../OptionsButton")
@@ -145,4 +150,5 @@ texture = ExtResource("4_hhlo6")
 
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
