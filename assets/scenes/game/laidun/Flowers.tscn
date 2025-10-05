@@ -1,15 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvdciyghvg8s6"]
+[gd_scene load_steps=2 format=3 uid="uid://bvdciyghvg8s6"]
 
 [ext_resource type="PackedScene" uid="uid://bx57usjwmhgrm" path="res://assets/models/kukkia.gltf" id="1_800by"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_82rul"]
-size = Vector3(1, 0.40777588, 1)
-
-[node name="Flowers" type="StaticBody3D" groups=["Food"]]
+[node name="Flowers" type="Node3D" groups=["Food"]]
 
 [node name="kukkia" parent="." instance=ExtResource("1_800by")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.021148682, 0)
-shape = SubResource("BoxShape3D_82rul")
