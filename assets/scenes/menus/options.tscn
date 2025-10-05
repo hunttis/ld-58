@@ -33,6 +33,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -121,6 +122,16 @@ ticks_position = 3
 [node name="HSeparator4" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="InvertYAxisLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Invert Y-axis"
+
+[node name="InvertYAxis" type="CheckBox" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
 [node name="ReturnToMenuButton2" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../VBoxContainer/Control/MasterVolumeSlider")
@@ -133,4 +144,5 @@ size_flags_horizontal = 3
 [connection signal="value_changed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Control/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer2/SoundVolumeSlider" to="." method="_on_sound_volume_slider_value_changed"]
+[connection signal="toggled" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/InvertYAxis" to="." method="_on_invert_y_axis_toggled"]
 [connection signal="pressed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ReturnToMenuButton2" to="." method="_on_return_to_menu_button_pressed"]

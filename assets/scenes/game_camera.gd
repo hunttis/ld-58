@@ -19,11 +19,12 @@ const TILT_MIN: float = 12
 
 var camera_offset: Vector3
 var tilt_axis: Vector3
+var inverter: int
 
 func _ready() -> void:
   camera_offset = global_position
   tilt_axis = Vector3.LEFT
-  Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+  inverter = -1 if Global.yAxisInverted else 1
 
 func _process(delta: float) -> void:
   global_position = target.global_position + camera_offset
@@ -57,7 +58,7 @@ func rotate_camera(angle: float):
     tilt_axis = tilt_axis.rotated(Vector3.UP, angle)
 
 func tilt_camera(angle: float):
-  var new_camera_offset = camera_offset.rotated(tilt_axis, angle)
+  var new_camera_offset = camera_offset.rotated(tilt_axis, angle * inverter)
 
   if new_camera_offset.y > TILT_MIN && new_camera_offset.y < TILT_MAX:
    camera_offset = new_camera_offset

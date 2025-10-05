@@ -27,3 +27,6 @@ func _on_sound_volume_slider_value_changed(value: float) -> void:
 
 func _on_return_to_menu_button_pressed() -> void:
     Events.go_to_menu.emit()
+
+func _on_invert_y_axis_toggled(toggled_on: bool) -> void:
+    Global.yAxisInverted = !Global.yAxisInverted
