@@ -9,7 +9,6 @@ size = Vector3(0.904541, 0.90527344, 1.5105591)
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 0
 script = ExtResource("1_i4pnq")
-max_flee_speed = 20.0
 weight_separation = 0.2
 weight_dog = 1000.0
 weight_bark = 200.0

@@ -117,7 +117,7 @@ func _physics_process(_delta: float) -> void:
   desired_dir = desired_dir.normalized()
 
   # 2) Pick a short-range steer target and hand it to the agent
-  var steer_target := global_position + ((desired_dir * look_ahead) * 2)
+  var steer_target := global_position + ((desired_dir * look_ahead) * 8)
   agent.target_position = steer_target
 
   # 3) Use path corner to build desired velocity; let avoidance adjust it
