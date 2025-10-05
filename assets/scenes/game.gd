@@ -13,12 +13,6 @@ signal level_failed
 func _ready():
   add_child(level_timer)
   coralled_sheep = 0
-  for x in range(10):
-    for z in range(10):
-      var sheep = SheepScene.instantiate()
-      sheep.position = Vector3(x * 10 - 50, 0, z * 10 - 50)
-      sheep.add_to_group("sheep")
-      add_child(sheep)
 
   total_sheep = get_tree().get_nodes_in_group("sheep").size()
   Events.point_update.emit(0, total_sheep)
