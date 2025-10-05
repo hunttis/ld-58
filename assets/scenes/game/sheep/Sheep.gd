@@ -32,7 +32,7 @@ enum State {
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 @onready var bleat_audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
-@onready var bleat_timer:Timer = $BleatTimer
+@onready var bleat_timer: Timer = $BleatTimer
 
 
 var goal_point: Vector3 = Vector3.ZERO
@@ -49,7 +49,7 @@ func _ready() -> void:
   rnd.randomize()
   add_to_group("sheep")
   Events.global_bleat_cooldown_done.connect(
-    func(): 
+    func():
     bleat_timer.start(randf_range(0, 1.5))
     can_bleat = true
     )
@@ -139,7 +139,7 @@ func _physics_process(_delta: float) -> void:
   desired_dir = desired_dir.normalized()
 
   # 2) Pick a short-range steer target and hand it to the agent
-  var steer_target := global_position + ((desired_dir * look_ahead) * 8)
+  var steer_target := global_position + ((desired_dir * look_ahead) * 2)
   agent.target_position = steer_target
 
   # 3) Use path corner to build desired velocity; let avoidance adjust it
@@ -231,7 +231,6 @@ func _wander() -> Vector3:
   return v
 
 func _bleat():
-  
   if can_bleat:
     Events.sheep_bleating.emit()
     bleat_audio.play()
