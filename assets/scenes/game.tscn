@@ -39,9 +39,10 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19251442, 0.25925064, -0.110435486)
 
 [node name="Dog" parent="." instance=ExtResource("4_j62u1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26235932, 0)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("6_5aext")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.924397, 0, 4.0398)
+[node name="Goat" parent="." instance=ExtResource("6_5aext")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.924397, 0.2727561, 4.0398)
 
 [node name="SheepFlock1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.841774, 0, -37.3348)
