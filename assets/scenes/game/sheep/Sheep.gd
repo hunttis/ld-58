@@ -40,6 +40,8 @@ var _barks: Array[Node] = []
 
 func _ready() -> void:
   rnd.randomize()
+  add_to_group("sheep")
+
   agent.velocity_computed.connect(_on_velocity_computed)
 
 func collided_with_dog(dog: Dog) -> void:
