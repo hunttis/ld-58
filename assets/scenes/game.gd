@@ -4,7 +4,7 @@ const SheepScene = preload("uid://divjv3eaenwq7")
 var heart_fx_scene = preload("res://assets/scenes/game/sheep/SheepHeartEffect.tscn")
 var bark_fx_scene = preload("res://assets/scenes/game/dog/BarkEffect.tscn")
 
-var total_sheep
+var total_sheep: int = 0
 var coralled_sheep: set = _set_coralled_sheep
 
 @onready var level_timer: Timer = $LevelTimer
