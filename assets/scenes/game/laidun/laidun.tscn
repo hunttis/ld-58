@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8hii7jmloklt"]
+[gd_scene load_steps=8 format=3 uid="uid://c8hii7jmloklt"]
 
 [ext_resource type="PackedScene" uid="uid://dxkkrebg77b4x" path="res://assets/scenes/game/laidun/corral.tscn" id="1_5sja6"]
 [ext_resource type="PackedScene" uid="uid://ba047qtv5jj3g" path="res://assets/scenes/game/laidun/tree.tscn" id="3_a3rql"]

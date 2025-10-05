@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxkkrebg77b4x"]
 
 [ext_resource type="PackedScene" uid="uid://daji13c00bfr0" path="res://assets/scenes/game/laidun/fence.tscn" id="1_fvpbb"]
-[ext_resource type="Script" uid="uid://kwdxsmpgf7jl" path="res://assets/scenes/game/laidun/corral.gd" id="1_w27jl"]
+[ext_resource type="Script" path="res://assets/scenes/game/laidun/corral.gd" id="1_w27jl"]
 [ext_resource type="PackedScene" uid="uid://b32fyljsyd61b" path="res://assets/scenes/game/laidun/water_trough.tscn" id="3_snsl6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvpbb"]

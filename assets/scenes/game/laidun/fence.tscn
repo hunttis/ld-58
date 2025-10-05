@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://daji13c00bfr0"]
+[gd_scene load_steps=4 format=3 uid="uid://daji13c00bfr0"]
 
 [ext_resource type="PackedScene" uid="uid://dw6rm2ic4yxp8" path="res://assets/models/aita.gltf" id="1_11586"]
+[ext_resource type="PackedScene" uid="uid://di3nethyohclf" path="res://assets/models/kiviaita.gltf" id="2_ownmn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ownmn"]
-size = Vector3(0.6830292, 1.4131317, 3.827148)
+size = Vector3(3.2460938, 5.2352295, 3.28125)
 
 [node name="Fence" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06717038, 0.65954685, -0.120806456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00076413155, 1.2771616, -0.028033018)
 shape = SubResource("BoxShape3D_ownmn")
 
 [node name="aita" parent="." instance=ExtResource("1_11586")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 1.3747897, 0, 0)
+visible = false
+
+[node name="kiviaita" parent="." instance=ExtResource("2_ownmn")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
