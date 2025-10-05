@@ -5,8 +5,8 @@ class_name Sheep
 @export var sheep_dog = Vector3.ZERO
 
 @export var corral_speed: float = 2
-@export var max_idle_speed: float = 2
-@export var max_flee_speed: float = 5.0
+@export var max_idle_speed: float = 3
+@export var max_flee_speed: float = 20
 @export var separation_radius: float = 1.5
 
 @export var look_ahead: float = 1.0

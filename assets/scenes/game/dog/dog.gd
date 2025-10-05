@@ -9,7 +9,7 @@ const bark_scene = preload("uid://ywcmei680bhq")
 
 @export_category("Threat range")
 @export var sprint_threat_range = 3.5
-@export var normal_threat_range = 7.0
+@export var normal_threat_range = 10
 @export_category("Speed")
 @export var sprint_speed = 25.0
 @export var normal_speed = 10.0
