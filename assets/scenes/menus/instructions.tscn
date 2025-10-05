@@ -85,6 +85,7 @@ text = "Your goal is to collect all the sheep to safety before the timer runs ou
 fit_content = true
 
 [node name="ReturnToMenuButton" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../MasterVolumeSlider")
 text = "Return to Menu"
