@@ -24,4 +24,4 @@ func _ready():
   Events.sheep_coralled.connect(_on_sheep_coralled)
   
 func _on_sheep_coralled():
-  coralled_sheep += 1
+  coralled_sheep = get_tree().get_nodes_in_group("coralled").size()
