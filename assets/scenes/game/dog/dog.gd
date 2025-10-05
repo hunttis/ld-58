@@ -104,6 +104,13 @@ func _physics_process(delta: float) -> void:
   if look_target != position:
     look_at(Vector3(look_target.x, global_position.y, look_target.z))
 
+func _input(event):
+  if event.is_action_pressed("ability_bark") && barkCooldown.is_stopped():
+    _bark()
+    barkCooldown.start(bark_cooldown)
+  if event.is_action_pressed("ability_dash") && move_state != Global.DOG_MOVE_STATE.DASH:
+    _dash()
+
 func _unhandled_input(event: InputEvent):
     if event.is_action_pressed("ability_sprint"):
       match move_state:
@@ -112,13 +119,6 @@ func _unhandled_input(event: InputEvent):
 
         Global.DOG_MOVE_STATE.SPRINT:
           move_state = Global.DOG_MOVE_STATE.NORMAL
-
-    if event.is_action_pressed("ability_bark") && barkCooldown.is_stopped():
-      _bark()
-      barkCooldown.start(bark_cooldown)
-
-    if event.is_action_pressed("ability_dash") && move_state != Global.DOG_MOVE_STATE.DASH:
-      _dash()
 
 func _bark():
   if cur_stamina < bark_stamina_cost:
