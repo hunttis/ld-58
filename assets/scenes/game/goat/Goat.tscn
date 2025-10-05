@@ -1,15 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://7gs0odw1wvb2"]
+[gd_scene load_steps=14 format=3 uid="uid://7gs0odw1wvb2"]
 
 [ext_resource type="Script" uid="uid://bt5y4r0b2n00n" path="res://assets/scenes/game/sheep/Sheep.gd" id="1_xencp"]
 [ext_resource type="PackedScene" uid="uid://bfooi731dlrxs" path="res://assets/models/passi.gltf" id="2_yhj6e"]
+[ext_resource type="AudioStream" uid="uid://hj3urgvoiyr7" path="res://assets/audio/sheep/sheep1.wav" id="3_ln1y3"]
+[ext_resource type="AudioStream" uid="uid://dm04yxhnlc0w4" path="res://assets/audio/sheep/sheep2.wav" id="4_0gfg2"]
+[ext_resource type="AudioStream" uid="uid://dn2ijm6r411e4" path="res://assets/audio/sheep/sheep3.wav" id="5_fxinj"]
+[ext_resource type="AudioStream" uid="uid://bqr8sgc42812d" path="res://assets/audio/sheep/sheep4.wav" id="6_x5jwr"]
+[ext_resource type="AudioStream" uid="uid://ckhpc77tvr86l" path="res://assets/audio/sheep/sheep5.wav" id="7_27lo0"]
+[ext_resource type="AudioStream" uid="uid://i7lp1i7keqb5" path="res://assets/audio/sheep/sheep6.wav" id="8_lg43j"]
+[ext_resource type="AudioStream" uid="uid://cp5ptk0ldhybh" path="res://assets/audio/sheep/sheep7.wav" id="9_i0r0j"]
+[ext_resource type="AudioStream" uid="uid://rbv4hru43sx3" path="res://assets/audio/sheep/sheep8.wav" id="10_scgcc"]
+[ext_resource type="AudioStream" uid="uid://cuig03ixx8umw" path="res://assets/audio/sheep/sheep9.wav" id="11_6t7sf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6bqu2"]
 size = Vector3(1.15094, 0.90527344, 1.9436188)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_csepe"]
+streams_count = 9
+stream_0/stream = ExtResource("3_ln1y3")
+stream_1/stream = ExtResource("4_0gfg2")
+stream_2/stream = ExtResource("5_fxinj")
+stream_3/stream = ExtResource("6_x5jwr")
+stream_4/stream = ExtResource("7_27lo0")
+stream_5/stream = ExtResource("8_lg43j")
+stream_6/stream = ExtResource("9_i0r0j")
+stream_7/stream = ExtResource("10_scgcc")
+stream_8/stream = ExtResource("11_6t7sf")
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 16
 script = ExtResource("1_xencp")
-max_flee_speed = 20.0
 weight_separation = 0.2
 weight_dog = 10.0
 weight_bark = 200.0
@@ -27,3 +47,10 @@ avoidance_mask = 7
 
 [node name="passi" parent="." instance=ExtResource("2_yhj6e")]
 transform = Transform3D(-0.08, 0, -6.993822e-09, 0, 0.08, 0, 6.993822e-09, 0, -0.08, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_csepe")
+bus = &"Sound"
+
+[node name="BleatTimer" type="Timer" parent="."]
+one_shot = true

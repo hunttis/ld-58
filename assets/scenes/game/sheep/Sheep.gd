@@ -31,6 +31,9 @@ enum State {
 }
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
+@onready var bleat_audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var bleat_timer:Timer = $BleatTimer
+
 
 var goal_point: Vector3 = Vector3.ZERO
 var rnd := RandomNumberGenerator.new()
@@ -40,10 +43,18 @@ var _neighbors: Array[Node] = []
 var _dogs: Array[Dog] = []
 var _barks: Array[Node] = []
 
+var can_bleat: bool = true
+
 func _ready() -> void:
   rnd.randomize()
   add_to_group("sheep")
-
+  Events.global_bleat_cooldown_done.connect(
+    func(): 
+    bleat_timer.start(randf_range(0, 1.5))
+    can_bleat = true
+    )
+  Events.global_bleat_cooldown_start.connect(func(): can_bleat = false)
+  bleat_timer.timeout.connect(func(): _bleat())
   agent.velocity_computed.connect(_on_velocity_computed)
 
 func collided_with_dog(dog: Dog) -> void:
@@ -218,3 +229,11 @@ func _wander() -> Vector3:
   var angle := rnd.randf_range(-PI, PI)
   var v := Vector3(cos(angle), 0.0, sin(angle))
   return v
+
+func _bleat():
+  
+  if can_bleat:
+    Events.sheep_bleating.emit()
+    bleat_audio.play()
+    
+  pass

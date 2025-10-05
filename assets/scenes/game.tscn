@@ -250,6 +250,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.4542, 0, 17.786888)
 
 [node name="Sheep100" parent="SheepFlock2" instance=ExtResource("7_3w2km")]
 
+[node name="GlobalBleatTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="level_complete" from="." to="Ui" method="on_level_complete"]
 [connection signal="level_failed" from="." to="Ui" method="on_game_over"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

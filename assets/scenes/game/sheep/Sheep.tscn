@@ -1,12 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://divjv3eaenwq7"]
+[gd_scene load_steps=14 format=3 uid="uid://divjv3eaenwq7"]
 
 [ext_resource type="Script" uid="uid://bt5y4r0b2n00n" path="res://assets/scenes/game/sheep/Sheep.gd" id="1_i4pnq"]
 [ext_resource type="PackedScene" uid="uid://be03sgpy6ajit" path="res://assets/models/lammas.gltf" id="2_6bqu2"]
+[ext_resource type="AudioStream" uid="uid://hj3urgvoiyr7" path="res://assets/audio/sheep/sheep1.wav" id="3_neg7h"]
+[ext_resource type="AudioStream" uid="uid://dm04yxhnlc0w4" path="res://assets/audio/sheep/sheep2.wav" id="4_o3wkl"]
+[ext_resource type="AudioStream" uid="uid://dn2ijm6r411e4" path="res://assets/audio/sheep/sheep3.wav" id="5_gsdwy"]
+[ext_resource type="AudioStream" uid="uid://bqr8sgc42812d" path="res://assets/audio/sheep/sheep4.wav" id="6_b4ipv"]
+[ext_resource type="AudioStream" uid="uid://ckhpc77tvr86l" path="res://assets/audio/sheep/sheep5.wav" id="7_l1o76"]
+[ext_resource type="AudioStream" uid="uid://i7lp1i7keqb5" path="res://assets/audio/sheep/sheep6.wav" id="8_cki1u"]
+[ext_resource type="AudioStream" uid="uid://cp5ptk0ldhybh" path="res://assets/audio/sheep/sheep7.wav" id="9_enctq"]
+[ext_resource type="AudioStream" uid="uid://rbv4hru43sx3" path="res://assets/audio/sheep/sheep8.wav" id="10_ftq86"]
+[ext_resource type="AudioStream" uid="uid://cuig03ixx8umw" path="res://assets/audio/sheep/sheep9.wav" id="11_ftoq6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6bqu2"]
 size = Vector3(0.904541, 0.90527344, 1.5105591)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lngqy"]
+streams_count = 9
+stream_0/stream = ExtResource("3_neg7h")
+stream_1/stream = ExtResource("4_o3wkl")
+stream_2/stream = ExtResource("5_gsdwy")
+stream_3/stream = ExtResource("6_b4ipv")
+stream_4/stream = ExtResource("7_l1o76")
+stream_5/stream = ExtResource("8_cki1u")
+stream_6/stream = ExtResource("9_enctq")
+stream_7/stream = ExtResource("10_ftq86")
+stream_8/stream = ExtResource("11_ftoq6")
+
+[node name="CharacterBody3D2" type="CharacterBody3D"]
 collision_mask = 0
 script = ExtResource("1_i4pnq")
 weight_separation = 0.2
@@ -26,3 +47,10 @@ avoidance_enabled = true
 radius = 1.0
 avoidance_layers = 3
 avoidance_mask = 7
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_lngqy")
+bus = &"Sound"
+
+[node name="BleatTimer" type="Timer" parent="."]
+one_shot = true
