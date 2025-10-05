@@ -74,7 +74,7 @@ text = "WASD - Movement
 Q, LMB - Bark
 Hold Shift - Sprint
 Space, RMB - Dash
-J,K, Mouse - Move camera
+IJKL, Mouse - Move camera
 Esc, Start - Pause
 "
 fit_content = true
