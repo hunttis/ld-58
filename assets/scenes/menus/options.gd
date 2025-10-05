@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 func _ready() -> void:
 	$OptionsContainer/ButtonContainer/MasterVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master"))
@@ -21,7 +21,7 @@ func _on_music_volume_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value))
 
 func _on_sound_volume_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Audio"), linear_to_db(value))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound"), linear_to_db(value))
 
 func _on_return_to_menu_button_pressed() -> void:
 	Events.go_to_menu.emit()
