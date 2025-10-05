@@ -46,12 +46,12 @@ func _set_move_state(new_state: Global.DOG_MOVE_STATE) -> void:
       move_state = Global.DOG_MOVE_STATE.SPRINT
       set_repulsion_range(sprint_threat_range)
       speed = sprint_speed
-      
+
     Global.DOG_MOVE_STATE.NORMAL:
       move_state = Global.DOG_MOVE_STATE.NORMAL
       set_repulsion_range(normal_threat_range)
       speed = normal_speed
-  
+
 
 func _ready():
   cur_stamina = max_stamina
@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
     var look_target = position + velocity
     look_at(Vector3(look_target.x, global_position.y, look_target.z))
     move_and_slide()
-    
+
     if move_state == Global.DOG_MOVE_STATE.SPRINT:
       cur_stamina = max(cur_stamina - sprint_stamina_cost * delta, 0)
       if cur_stamina <= 0:
@@ -119,7 +119,7 @@ func _unhandled_input(event: InputEvent):
 func _bark():
   if cur_stamina < bark_stamina_cost:
     return
-    
+
   cur_stamina -= bark_stamina_cost
   var bark_inst = bark_scene.instantiate() as Bark
   bark_inst.position = global_position
@@ -130,7 +130,7 @@ func _dash():
   if cur_stamina < dash_stamina_cost:
     # some indicator for insufficient stamina
     return
-    
+
   cur_stamina -= dash_stamina_cost
   agent.target_position = global_position
   var dash_dir = global_position.direction_to(get_vector_to_cursor_pos())
@@ -154,7 +154,7 @@ func get_vector_to_cursor_pos() -> Vector3:
     return Vector3.ZERO
 
   return result.position
-  
+
 
 func set_repulsion_range(new_range: float) -> void:
   var shape = repulsionCollider.shape as SphereShape3D

@@ -18,10 +18,10 @@ func _ready():
       sheep.position = Vector3(x * 10 - 50, 0, z * 10 - 50)
       sheep.add_to_group("sheep")
       add_child(sheep)
-      
+
   total_sheep = get_tree().get_nodes_in_group("sheep").size()
   Events.point_update.emit(0,total_sheep)
   Events.sheep_coralled.connect(_on_sheep_coralled)
-  
+
 func _on_sheep_coralled():
   coralled_sheep = get_tree().get_nodes_in_group("coralled").size()
