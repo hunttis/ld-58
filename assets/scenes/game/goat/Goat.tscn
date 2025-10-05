@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://7gs0odw1wvb2"]
+
+[ext_resource type="Script" uid="uid://bt5y4r0b2n00n" path="res://assets/scenes/game/sheep/Sheep.gd" id="1_xencp"]
+[ext_resource type="PackedScene" uid="uid://bfooi731dlrxs" path="res://assets/models/passi.gltf" id="2_yhj6e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bqu2"]
+size = Vector3(1.15094, 0.90527344, 1.9436188)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_mask = 16
+script = ExtResource("1_xencp")
+max_flee_speed = 20.0
+weight_separation = 0.2
+weight_dog = 10.0
+weight_bark = 200.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009674072, 0.45263672, -0.23574066)
+shape = SubResource("BoxShape3D_6bqu2")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+avoidance_enabled = true
+radius = 1.0
+avoidance_layers = 3
+avoidance_mask = 7
+
+[node name="passi" parent="." instance=ExtResource("2_yhj6e")]
+transform = Transform3D(-0.08, 0, -6.993822e-09, 0, 0.08, 0, 6.993822e-09, 0, -0.08, 0, 0, 0)
