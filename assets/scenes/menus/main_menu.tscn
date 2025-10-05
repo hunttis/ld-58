@@ -94,7 +94,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
-focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_top = NodePath("../InstructionsButton")
 theme_override_font_sizes/font_size = 32
 text = "Start"
 
@@ -105,14 +105,9 @@ text = "Options"
 
 [node name="InstructionsButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Instructions"
-
-[node name="QuitButton" type="Button" parent="ScreenSizeContainer/VerticalContainer/MenuButtons"]
-layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
 theme_override_font_sizes/font_size = 32
-text = "Quit"
+text = "Instructions"
 
 [node name="BottomSpacer" type="Control" parent="ScreenSizeContainer/VerticalContainer"]
 layout_mode = 2
@@ -141,4 +136,3 @@ texture = ExtResource("4_hhlo6")
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
-[connection signal="pressed" from="ScreenSizeContainer/VerticalContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -95,6 +95,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="BackToMenuButton" type="Button" parent="MenuContainer/HBoxContainer/Content/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Return to menu"

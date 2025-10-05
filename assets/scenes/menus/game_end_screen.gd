@@ -3,6 +3,8 @@ extends Node2D
 @onready var lossfare = $lossfare
 
 func _ready():
+  %BackToMenuButton.grab_focus()
+
   $MenuContainer/HBoxContainer/Content/VBoxContainer/RescueCountLabel.text = Global.endScreenText
   $MenuContainer/HBoxContainer/Content/VBoxContainer/GameoverLabel.text = Global.endScreenTitle
   Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
