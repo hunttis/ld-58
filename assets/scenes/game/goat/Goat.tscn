@@ -29,6 +29,7 @@ stream_8/stream = ExtResource("11_6t7sf")
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 16
+safe_margin = 0.1
 script = ExtResource("1_xencp")
 weight_separation = 0.2
 weight_dog = 10.0

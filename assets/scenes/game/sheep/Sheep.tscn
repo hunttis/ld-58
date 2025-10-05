@@ -28,6 +28,7 @@ stream_7/stream = ExtResource("10_ftq86")
 stream_8/stream = ExtResource("11_ftoq6")
 
 [node name="CharacterBody3D2" type="CharacterBody3D"]
+safe_margin = 0.1
 script = ExtResource("1_i4pnq")
 weight_separation = 0.2
 weight_dog = 1000.0
@@ -46,6 +47,9 @@ avoidance_enabled = true
 radius = 1.0
 avoidance_layers = 3
 avoidance_mask = 7
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_lngqy")
