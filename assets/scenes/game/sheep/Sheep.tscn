@@ -28,7 +28,6 @@ stream_7/stream = ExtResource("10_ftq86")
 stream_8/stream = ExtResource("11_ftoq6")
 
 [node name="CharacterBody3D2" type="CharacterBody3D"]
-collision_mask = 0
 script = ExtResource("1_i4pnq")
 weight_separation = 0.2
 weight_dog = 1000.0
