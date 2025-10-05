@@ -6,6 +6,7 @@ const bark_scene = preload("uid://ywcmei680bhq")
 @onready var repulsionArea: Area3D = $MoveThreatRange
 @onready var repulsionCollider: CollisionShape3D = $MoveThreatRange/CollisionShape3D
 @onready var barkCooldown: Timer = $BarkCooldown
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
 @export_category("Threat range")
 @export var sprint_threat_range = 3.5
@@ -124,18 +125,18 @@ func _unhandled_input(event: InputEvent):
 func _bark():
   if cur_stamina < bark_stamina_cost:
     return
-
+  animation.play("bark")
   cur_stamina -= bark_stamina_cost
   var bark_inst = bark_scene.instantiate() as Bark
   bark_inst.position = global_position
   get_tree().get_nodes_in_group("Game")[0].add_child(bark_inst)
-
+  
 
 func _dash():
   if cur_stamina < dash_stamina_cost:
     # some indicator for insufficient stamina
     return
-  $AnimationPlayer.play("dash")
+  animation.play("dash")
 
 
 func _dash_execute():
