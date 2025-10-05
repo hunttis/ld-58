@@ -19,9 +19,12 @@ signal level_failed
 func _ready():
   var heart_fx = heart_fx_scene.instantiate()
   add_child(heart_fx)
-  heart_fx.visible = false
+  heart_fx.position = Vector3(1000, 1000, 1000)
+  
   var bark_fx = bark_fx_scene.instantiate()
   add_child(bark_fx)
+  bark_fx.position = Vector3(1000, 1000, 1000)
+  
   bark_fx.visible = false
   
   add_child(level_timer)
