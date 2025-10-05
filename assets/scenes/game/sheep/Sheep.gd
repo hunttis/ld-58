@@ -106,6 +106,10 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
 
 var frames = 0
 func _physics_process(_delta: float) -> void:
+  if $AnimationPlayer && !$AnimationPlayer.is_playing():
+    $AnimationPlayer.seek(randf_range(0, 1))
+    $AnimationPlayer.play("bounce")
+  
   frames += 1
   if frames % frame_delay != 0:
     return
