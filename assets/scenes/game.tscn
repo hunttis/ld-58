@@ -33,7 +33,7 @@ ambient_light_energy = 1.5
 script = ExtResource("1_5gf0t")
 
 [node name="LevelTimer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 150.0
 one_shot = true
 
 [node name="Ui" parent="." node_paths=PackedStringArray("level_timer") instance=ExtResource("1_cb66b")]
