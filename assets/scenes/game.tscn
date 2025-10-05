@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdndksq01g27t" path="res://assets/scenes/game.gd" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d2n143c74e0i6" path="res://assets/scenes/ui/ui.tscn" id="1_cb66b"]
-[ext_resource type="Script" uid="uid://b8frmew3bsekw" path="res://assets/scenes/game_camera.gd" id="3_j62u1"]
+[ext_resource type="Script" path="res://assets/scenes/game_camera.gd" id="3_j62u1"]
 [ext_resource type="PackedScene" uid="uid://c8hii7jmloklt" path="res://assets/scenes/game/laidun/laidun.tscn" id="4_cb5na"]
 [ext_resource type="PackedScene" uid="uid://dpidycji3x0sk" path="res://assets/scenes/game/dog/Dog.tscn" id="4_j62u1"]
 

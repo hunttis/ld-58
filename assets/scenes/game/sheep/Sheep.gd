@@ -62,6 +62,7 @@ func collided_with_dog_bark_exited(bark: Node) -> void:
 func collided_with_corral_entrance(target: Node3D) -> void:
   # remove from group so not considered as neighbour for sheep movement
   remove_from_group("sheep")
+  Events.sheep_coralled.emit()
   goal_point = target.global_position
   state = State.IN_CORRAL
   

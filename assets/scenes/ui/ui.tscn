@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2n143c74e0i6"]
+[gd_scene load_steps=5 format=3 uid="uid://d2n143c74e0i6"]
 
 [ext_resource type="Script" uid="uid://3joj5t57chve" path="res://assets/scenes/ui/stamina_bar.gd" id="1_7mnxw"]
+[ext_resource type="Script" uid="uid://3q6k87wkyfdi" path="res://assets/scenes/ui/points.gd" id="2_pwtnk"]
 [ext_resource type="Script" uid="uid://45qn7f12oljx" path="res://assets/scenes/ui/move_container.gd" id="2_wlc6l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcsp3"]
@@ -45,11 +46,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Points" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Da Game!"
+text = "Sheep coralled: 12 / 100"
+script = ExtResource("2_pwtnk")
 
 [node name="Time" type="Label" parent="MarginContainer"]
 layout_mode = 2
