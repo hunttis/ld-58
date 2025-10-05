@@ -30,6 +30,9 @@ current = true
 script = ExtResource("3_j62u1")
 target = NodePath("../Dog")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+current = true
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0069024093, -0.65268046, 0.7576019, 0.0059462376, 0.7576333, 0.6526534, -0.9999585, 0, 0.009110489, 53.40571, 14.066107, -23.626686)
 light_energy = 2.0

@@ -32,6 +32,3 @@ wait_time = 2.5
 one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-current = true
