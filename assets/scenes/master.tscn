@@ -23,3 +23,4 @@ bus = &"Music"
 [node name="AudioStreamPlayerGame" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_tpt81")
 autoplay = true
+bus = &"Music"
