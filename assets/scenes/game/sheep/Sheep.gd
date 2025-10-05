@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 class_name Sheep
 
+var sheep_heart_scene = preload("res://assets/scenes/game/sheep/SheepHeartEffect.tscn")
+
 @export var sheep_dog = Vector3.ZERO
 
 @export var corral_speed: float = 2
@@ -77,25 +79,29 @@ func collided_with_corral_entrance(target: Node3D) -> void:
   # remove from group so not considered as neighbour for sheep movement
   remove_from_group("sheep")
   add_to_group("coralled")
+  var sheep_heart_fx = sheep_heart_scene.instantiate()
+  add_child(sheep_heart_fx)
+  sheep_heart_fx.scale = Vector3(0.05, 0.05, 0.05)
+  sheep_heart_fx.position = Vector3.ZERO
   Events.sheep_coralled.emit()
   goal_point = target.global_position
   state = State.IN_CORRAL
-  
+
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
     # Apply the avoidance-adjusted velocity to the body
     velocity = safe_velocity
-    
+
     # Smoothly rotate towards movement direction
     if velocity.length() > 0.001:
         var target_dir := velocity.normalized()
         var target_transform := Transform3D()
         target_transform.origin = global_position
         target_transform = target_transform.looking_at(global_position + target_dir, Vector3.UP)
-        
+
         # Slerp the basis for smooth rotation
         var delta := get_physics_process_delta_time()
         global_transform.basis = global_transform.basis.slerp(target_transform.basis, rotation_speed * delta)
-    
+
     move_and_slide()
 
 var frames = 0
@@ -233,5 +239,5 @@ func _bleat():
   if can_bleat:
     Events.sheep_bleating.emit()
     bleat_audio.play()
-    
+
   pass
