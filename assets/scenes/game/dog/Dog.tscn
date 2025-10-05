@@ -21,8 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0033569336, 0.39217424, -0
 shape = SubResource("BoxShape3D_yvigx")
 
 [node name="MoveThreatRange" type="Area3D" parent="."]
-collision_layer = 16
-collision_mask = 0
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MoveThreatRange"]
 shape = SubResource("SphereShape3D_yvigx")
@@ -31,3 +30,5 @@ debug_color = Color(0.8974623, 0.12784648, 0.43124294, 1)
 [node name="BarkCooldown" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

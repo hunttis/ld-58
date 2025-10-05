@@ -28,6 +28,7 @@ const bark_scene = preload("uid://ywcmei680bhq")
 @export var stamina_regen = 20
 
 var speed: float
+var threat_range: float
 var dash_target: Vector3 = Vector3.ZERO
 var cur_stamina: set = set_cur_stamina
 var move_state: set = _set_move_state
@@ -45,18 +46,23 @@ func _set_move_state(new_state: Global.DOG_MOVE_STATE) -> void:
       move_state = Global.DOG_MOVE_STATE.SPRINT
       set_repulsion_range(sprint_threat_range)
       speed = sprint_speed
+      threat_range = sprint_threat_range
 
     Global.DOG_MOVE_STATE.NORMAL:
       move_state = Global.DOG_MOVE_STATE.NORMAL
       set_repulsion_range(normal_threat_range)
       speed = normal_speed
+      threat_range = normal_threat_range
 
 
 func _ready():
   cur_stamina = max_stamina
   move_state = Global.DOG_MOVE_STATE.NORMAL
   speed = normal_speed
+  threat_range = normal_threat_range
   add_to_group("dog")
+  repulsionArea.body_entered.connect(_on_repulsion_area_body_entered)
+  repulsionArea.body_exited.connect(_on_repulsion_area_body_exited)
 
 func _process(delta):
   if (move_state == Global.DOG_MOVE_STATE.NORMAL || velocity == Vector3.ZERO) && cur_stamina < max_stamina:
@@ -91,7 +97,8 @@ func _physics_process(delta: float) -> void:
       dash_target = Vector3.ZERO
   
   var look_target = position + velocity
-  look_at(Vector3(look_target.x, global_position.y, look_target.z))
+  if look_target != position:
+    look_at(Vector3(look_target.x, global_position.y, look_target.z))
 
 func _unhandled_input(event: InputEvent):
     if event.is_action_pressed("ability_sprint"):

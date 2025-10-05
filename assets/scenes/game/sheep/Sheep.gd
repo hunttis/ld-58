@@ -4,8 +4,6 @@ class_name Sheep
 
 @export var sheep_dog = Vector3.ZERO
 
-@export var dog_fear_radius: float = 10.0
-
 @export var corral_speed: float = 2
 @export var max_idle_speed: float = 2
 @export var max_flee_speed: float = 5.0
@@ -36,7 +34,7 @@ var rnd := RandomNumberGenerator.new()
 var state: State = State.IDLE
 
 var _neighbors: Array[Node] = []
-var _dogs: Array[Node] = []
+var _dogs: Array[Dog] = []
 var _barks: Array[Node] = []
 
 func _ready() -> void:
@@ -44,6 +42,7 @@ func _ready() -> void:
   agent.velocity_computed.connect(_on_velocity_computed)
 
 func collided_with_dog(dog: Dog) -> void:
+  print("should add dog to array")
   _dogs.append(dog)
 
 func collided_with_dog_exited(dog: Dog) -> void:
@@ -167,17 +166,17 @@ func _average_vel(arr: Array) -> Vector3:
         sum += a.velocity
     return sum / float(max(1, arr.size()))
 
-func _dog_repulsion(dogs: Array) -> Vector3:
+func _dog_repulsion(dogs: Array[Dog]) -> Vector3:
   if state == State.IN_CORRAL:
     return Vector3.ZERO
 
   var f := Vector3.ZERO
   for d in dogs:
-      var off: Vector3 = global_position - d.global_position
-      var dist: float = off.length()
-      if dist < dog_fear_radius and dist > 0.001:
-          # Heavier inverse-square, scales up close to the dog
-          f += off.normalized() * (1.0 / (dist * dist))
+    var off: Vector3 = global_position - d.global_position
+    var dist: float = off.length()
+    if dist < d.threat_range and dist > 0.001:
+      # Heavier inverse-square, scales up close to the dog
+      f += off.normalized() * (1.0 / (dist * dist))
   return f
 
 func _bark_repulsion(barks: Array) -> Vector3:
