@@ -46,14 +46,16 @@ func _on_go_to_game():
   var game_scene = game_scene_file.instantiate()
   current_scene.add_child(game_scene)
   current_scene_type = Scenes.GameEnd
-  game_scene.level_failed.connect(_on_game_fail)
+  game_scene.level_failed.connect(_on_game_end)
+  game_scene.level_complete.connect(_on_game_end)
   update_music()
 
-func _on_game_fail():
+func _on_game_end():
   _empty_current_scene()
   var game_end_scene = game_end_scene_file.instantiate()
   current_scene.add_child(game_end_scene)
   current_scene_type = Scenes.Game
+
 
 func _on_go_to_menu():
   _empty_current_scene()

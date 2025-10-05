@@ -51,4 +51,7 @@ func _on_level_timer_timeout():
 func _on_sheep_coralled():
   coralled_sheep = get_tree().get_nodes_in_group("coralled").size()
   if get_tree().get_nodes_in_group("sheep").size() == 0:
+
+    Global.endScreenTitle = "Good job!"
+    Global.endScreenText = "You rescued all the sheep!"
     level_complete.emit()
