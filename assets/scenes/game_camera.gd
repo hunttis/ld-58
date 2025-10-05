@@ -6,7 +6,7 @@ enum Rotation {
   COUNTER_CLOCKWISE = 1
 }
 
-@export var target : Node3D
+@export var target : Dog
 
 var camera_offset: Vector3
 
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
   if dogs.is_empty():
     return
 
-  var rotate_angle = Rotation.NONE
+  var rotate_direction = Rotation.NONE
   
   var average_pos = Vector3.ZERO
   for dog in dogs:
@@ -28,11 +28,12 @@ func _process(delta: float) -> void:
   global_position = average_pos + camera_offset
   
   if Input.is_action_pressed("ui_camera_rotate_cw"):
-      rotate_angle = Rotation.CLOCKWISE
+      rotate_direction = Rotation.CLOCKWISE
   if Input.is_action_pressed("ui_camera_rotate_ccw"):
-      rotate_angle = Rotation.COUNTER_CLOCKWISE
+      rotate_direction = Rotation.COUNTER_CLOCKWISE
   
-  if (rotate_angle != Rotation.NONE):
-    camera_offset = camera_offset.rotated(Vector3.UP, delta * rotate_angle)
-  
+  if (rotate_direction != Rotation.NONE):
+    camera_offset = camera_offset.rotated(Vector3.UP, delta * rotate_direction)
+
   look_at(target.position)
+  target.set_camera_rotation(rotation.y)

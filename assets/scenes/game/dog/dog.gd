@@ -32,11 +32,14 @@ var threat_range: float
 var dash_target: Vector3 = Vector3.ZERO
 var cur_stamina: set = set_cur_stamina
 var move_state: set = _set_move_state
+var camera_rotation: float
 
 func set_cur_stamina(new_val: float):
   cur_stamina = new_val
   Events.stamina_change.emit(new_val / max_stamina)
 
+func set_camera_rotation(rotation: float):
+  camera_rotation = rotation
 
 func _set_move_state(new_state: Global.DOG_MOVE_STATE) -> void:
   move_state = new_state
@@ -74,6 +77,7 @@ func _physics_process(delta: float) -> void:
   if move_state != Global.DOG_MOVE_STATE.DASH:
     if move_dir.length() > 0:
       velocity = move_dir * speed
+      velocity = velocity.rotated(Vector3.UP, camera_rotation)
     else:
       velocity = Vector3.ZERO
     
