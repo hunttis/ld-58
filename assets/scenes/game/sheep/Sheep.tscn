@@ -52,6 +52,7 @@ debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_lngqy")
+max_distance = 250.0
 bus = &"Sound"
 
 [node name="BleatTimer" type="Timer" parent="."]
