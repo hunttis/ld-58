@@ -56,8 +56,8 @@ func _on_game_end():
   _empty_current_scene()
   var game_end_scene = game_end_scene_file.instantiate()
   current_scene.add_child(game_end_scene)
-  current_scene_type = Scenes.Game
-
+  current_scene_type = Scenes.GameEnd
+  update_music()
 
 func _on_go_to_menu():
   _empty_current_scene()
@@ -90,5 +90,10 @@ func update_music():
         Scenes.Main_Menu:
           if !titleMusic.playing:
             titleMusic.playing = true
+          if gameMusic.playing:
+            gameMusic.playing = false
+        Scenes.GameEnd:
+          if titleMusic.playing:
+            titleMusic.playing = false
           if gameMusic.playing:
             gameMusic.playing = false
