@@ -2,12 +2,10 @@ extends Control
 
 
 func _ready() -> void:
-    print($OptionsContainer/ButtonContainer/MusicVolumeSlider.value)
-
-    $OptionsContainer/ButtonContainer/MasterVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master"))
-    $OptionsContainer/ButtonContainer/MusicVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Music"))
-    $OptionsContainer/ButtonContainer/SoundVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Sound"))
-    $OptionsContainer/ButtonContainer/MasterVolumeSlider.grab_focus()
+    %MasterVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master"))
+    %MusicVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Music"))
+    %SoundVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Sound"))
+    %MasterVolumeSlider.grab_focus()
 
 func _on_music_button_toggled(toggled_on: bool) -> void:
     AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db($Slider.value))
