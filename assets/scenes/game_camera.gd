@@ -12,6 +12,7 @@ var camera_offset: Vector3
 
 func _ready() -> void:
   camera_offset = global_position
+  Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta: float) -> void:
   var dogs = get_tree().get_nodes_in_group("dog") as Array[CharacterBody3D]
@@ -37,3 +38,7 @@ func _process(delta: float) -> void:
 
   look_at(target.position)
   target.set_camera_rotation(rotation.y)
+
+func _input(event):
+  if event is InputEventMouseMotion:
+    camera_offset = camera_offset.rotated(Vector3.UP, event.relative.x * -0.005)
