@@ -50,6 +50,7 @@ func _on_level_timer_timeout():
   Global.endScreenText = "You rescued " + str(coralled_sheep) + " sheep!"
   var lowpass = AudioEffectLowPassFilter.new()
   lowpass.cutoff_hz = 500
+  var bus = AudioServer.get_bus_index("Master")
   AudioServer.add_bus_effect(bus, lowpass, 0)
   level_failed.emit()
   level_timer.stop()
