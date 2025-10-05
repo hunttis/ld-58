@@ -67,7 +67,6 @@ avoidance_enabled = true
 radius = 1.0
 avoidance_layers = 3
 avoidance_mask = 7
-debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
