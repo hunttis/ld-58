@@ -60,4 +60,5 @@ func _on_sheep_coralled():
   if get_tree().get_nodes_in_group("sheep").size() == 0:
     Global.endScreenTitle = "Good job!"
     Global.endScreenText = "You rescued all the sheep!"
+    Global.won = true
     level_complete.emit()

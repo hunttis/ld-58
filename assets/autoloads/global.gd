@@ -8,3 +8,4 @@ enum DOG_MOVE_STATE {
 
 var endScreenTitle = "Game over!"
 var endScreenText = ""
+var won = false
