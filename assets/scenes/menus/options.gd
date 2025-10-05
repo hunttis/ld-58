@@ -5,6 +5,7 @@ func _ready() -> void:
     %MasterVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master"))
     %MusicVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Music"))
     %SoundVolumeSlider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Sound"))
+    %InvertYAxis.set_pressed_no_signal(Global.yAxisInverted)
     %MasterVolumeSlider.grab_focus()
 
 func _on_master_volume_slider_value_changed(value: float) -> void:

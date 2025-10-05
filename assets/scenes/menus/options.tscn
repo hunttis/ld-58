@@ -128,6 +128,7 @@ layout_mode = 2
 text = "Invert Camera Y-axis"
 
 [node name="InvertYAxis" type="CheckBox" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ReturnToMenuButton2" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
