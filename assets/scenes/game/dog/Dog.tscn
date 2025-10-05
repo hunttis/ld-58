@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpidycji3x0sk"]
+[gd_scene load_steps=8 format=3 uid="uid://dpidycji3x0sk"]
 
 [ext_resource type="Script" uid="uid://5ikc7bkhqwly" path="res://assets/scenes/game/dog/dog.gd" id="1_x35gb"]
 [ext_resource type="PackedScene" uid="uid://dwa2yq4tabt6r" path="res://assets/models/koira.gltf" id="1_yvigx"]
@@ -9,12 +9,87 @@ size = Vector3(0.41906738, 0.7514038, 1.3369141)
 [sub_resource type="SphereShape3D" id="SphereShape3D_yvigx"]
 radius = 8.0
 
+[sub_resource type="Animation" id="Animation_xrnns"]
+resource_name = "dash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("koira:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.18421513, 0), Vector3(0, 1.4901161e-08, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("koira:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0), Vector3(-0.09599311, -3.1415927, 0), Vector3(0.09599311, -3.1415927, 0), Vector3(0, -3.1415927, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_dash_execute"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3rakj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("koira:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("koira:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oeyll"]
+_data = {
+&"RESET": SubResource("Animation_3rakj"),
+&"dash": SubResource("Animation_xrnns")
+}
+
 [node name="Dog" type="CharacterBody3D"]
 script = ExtResource("1_x35gb")
 bark_cooldown = 0.5
 
 [node name="koira" parent="." instance=ExtResource("1_yvigx")]
-transform = Transform3D(-0.05, 0, -4.371139e-09, 0, 0.05, 0, 4.371139e-09, 0, -0.05, 0, 0, 0)
+transform = Transform3D(-0.05, 0, -7.54979e-09, 0, 0.05, 0, 7.54979e-09, 0, -0.05, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0033569336, 0.39217424, -0.07470703)
@@ -32,3 +107,8 @@ wait_time = 2.5
 one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oeyll")
+}

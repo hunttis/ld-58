@@ -135,7 +135,10 @@ func _dash():
   if cur_stamina < dash_stamina_cost:
     # some indicator for insufficient stamina
     return
+  $AnimationPlayer.play("dash")
 
+
+func _dash_execute():
   cur_stamina -= dash_stamina_cost
   move_state = Global.DOG_MOVE_STATE.DASH
 
