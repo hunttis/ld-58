@@ -22,11 +22,12 @@ one_shot = true
 [node name="Ui" parent="." node_paths=PackedStringArray("level_timer") instance=ExtResource("1_cb66b")]
 level_timer = NodePath("../LevelTimer")
 
-[node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target") groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.74201095, 0.67038786, 0, -0.67038786, 0.74201095, 0, 15.005146, 16.981813)
 environment = SubResource("Environment_j62u1")
 current = true
 script = ExtResource("3_j62u1")
+target = NodePath("../Dog")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0069024093, -0.65268046, 0.7576019, 0.0059462376, 0.7576333, 0.6526534, -0.9999585, 0, 0.009110489, 53.40571, 14.066107, -23.626686)
