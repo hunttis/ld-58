@@ -41,7 +41,8 @@ func _set_coralled_sheep(new_val: int):
 
 func _on_level_timer_timeout():
   print("Level timer timeout")
-  Global.rescuedSheepCount = coralled_sheep
+  Global.endScreenTitle = "Good job!"
+  Global.endScreenText = "You rescued " + str(coralled_sheep) + " sheep!"
   var lowpass = AudioEffectLowPassFilter.new()
   lowpass.cutoff_hz = 500
   AudioServer.add_bus_effect(bus, lowpass, 0)
@@ -51,7 +52,6 @@ func _on_level_timer_timeout():
 func _on_sheep_coralled():
   coralled_sheep = get_tree().get_nodes_in_group("coralled").size()
   if get_tree().get_nodes_in_group("sheep").size() == 0:
-
     Global.endScreenTitle = "Good job!"
     Global.endScreenText = "You rescued all the sheep!"
     level_complete.emit()

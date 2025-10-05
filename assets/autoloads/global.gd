@@ -6,6 +6,5 @@ enum DOG_MOVE_STATE {
   DASH
 }
 
-var rescuedSheepCount = 0
 var endScreenTitle = "Game over!"
-var endScreenText = "You rescued " + str(rescuedSheepCount) + " sheep!"
+var endScreenText = ""
