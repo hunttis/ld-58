@@ -16,11 +16,13 @@ class_name Sheep
 @export var weight_separation: float = 1.0
 @export var weight_align: float = 0.2
 @export var weight_dog: float = 2.0
-@export var weight_wander: float = 0.5
+@export var weight_wander: float = 0.2
 @export var weight_bark: float = 20
 @export var weight_goal: float = 20
 
 @export var neighbor_radius: float = 40.0
+
+var frame_delay := 4
 
 enum State {
   IDLE,
@@ -86,7 +88,13 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
     
     move_and_slide()
 
+var frames = 0
 func _physics_process(_delta: float) -> void:
+  frames += 1
+  if frames % frame_delay != 0:
+    return
+  frames = 0
+
   _update_neighbors()
 
   var steer := Vector3.ZERO
