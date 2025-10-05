@@ -58,7 +58,6 @@ func _ready() -> void:
   agent.velocity_computed.connect(_on_velocity_computed)
 
 func collided_with_dog(dog: Dog) -> void:
-  print("should add dog to array")
   _dogs.append(dog)
 
 func collided_with_dog_exited(dog: Dog) -> void:
