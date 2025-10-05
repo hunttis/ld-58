@@ -33,7 +33,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -54,7 +53,6 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 350
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -127,13 +125,14 @@ layout_mode = 2
 
 [node name="InvertYAxisLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Invert Y-axis"
+text = "Invert Camera Y-axis"
 
 [node name="InvertYAxis" type="CheckBox" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="ReturnToMenuButton2" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 10
 focus_neighbor_bottom = NodePath("../VBoxContainer/Control/MasterVolumeSlider")
 text = "Return to Menu"
 
